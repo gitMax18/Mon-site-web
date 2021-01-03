@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --primary-color: #0d1b1e;
+  --secondary-color: #7c90a0;
+  --strong-color: #a8201a;
+}
+
+.start_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary-color);
+}
+
+.start_container h1 {
+  font-size: 6rem;
+  font-family: Montserrat, sans-serif;
+  color: white;
+}
+
+.landing_container {
+  height: 100vh;
+  width: 100%;
+  background: var(--primary-color);
+  display: flex;
+}
+
+.left_box {
+  flex-basis: 60%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  padding-left: 6rem;
+}
+
+.left_box span {
+  font-size: 10rem;
+  font-family: Montserrat, sans-serif;
+  display: inline-block;
+  padding-right: 1rem;
+}
+
+.left_box p {
+  font-size: 6rem;
+}
+
+.right_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 40%;
+}
+
+/* Effet Cube */
+
+.containerCube {
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+  margin: 100px auto 0;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  position: relative;
+  animation: spin 15s infinite linear;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  background-color: blueviolet;
+}
+
+.faceTop {
+  transform: rotateX(90deg) translateZ(100px);
+  /* animation: explosionTop 15s ease-out infinite; */
+}
+
+.faceBottom {
+  transform: rotateX(-90deg) translateZ(100px);
+  /* animation: explosionBottom 15s ease-out infinite; */
+}
+.faceLeft {
+  transform: rotateY(-90deg) translateZ(100px);
+  /* animation: explosionLeft 15s ease-out infinite; */
+}
+.faceRight {
+  transform: rotateY(90deg) translateZ(100px);
+  /* animation: explosionRight 15s ease-out infinite; */
+}
+.faceBack {
+  transform: rotateX(-180deg) translateZ(100px);
+  /* animation: explosionBack 15s ease-out infinite; */
+}
+.faceFront {
+  transform: rotateX(0deg) translateZ(100px);
+  /* animation: explosionFront 15s ease-out infinite; */
+}
+
+@keyframes spin {
+  from {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+.presentation {
+  height: 100vh;
+  background-color: aqua;
+  position: relative;
+}
