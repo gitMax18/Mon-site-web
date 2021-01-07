@@ -173,7 +173,8 @@ html {
 }
 
 .presentation h1,
-.parcour h1 {
+.parcour h1,
+.hobbies h1 {
   font-size: 12rem;
   font-family: Caveat brush, sans-serif;
   margin: 0 auto;
@@ -356,10 +357,105 @@ html {
 /*#######################################-- Hobbies --#######################################*/
 
 .hobbies {
-  background-color: red;
   width: 100%;
 }
 
 .hobbies_container {
+  height: 1300px;
+  width: 100%;
+  /* perspective: 1400px; */
+}
+
+.hobbies_content {
+  padding: 0 20rem;
+  position: relative;
+  height: 800px;
+  width: 70%;
+  margin: 0 auto;
+  /* background-color: aquamarine; */
+  /* transform-style: preserve-3d; */
+}
+
+.hobbie {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* transform-style: preserve-3d; */
+  box-shadow: 2px 5px 12px rgba(0, 0, 0, 1);
+}
+
+.hobbies_txt {
+  width: 100%;
+  height: 120%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.hobbies_txt span {
+  display: block;
+  font-size: 10rem;
+  color: lightgray;
+  font-family: Caveat Brush, sans-serif;
+}
+
+/* guitare */
+.hobbie1 {
+  width: 35rem;
+  height: 20rem;
+  top: 15%;
+  left: 20%;
+}
+/* fete */
+.hobbie2 {
+  width: 20rem;
+  height: 35rem;
+  top: 60%;
+  left: 20%;
+}
+/* lire */
+.hobbie3 {
+  width: 20rem;
+  height: 30rem;
+  top: 20%;
+  left: 80%;
+}
+/* mer */
+.hobbie4 {
+  width: 35rem;
+  height: 25rem;
+  object-fit: contain;
+  top: 65%;
+  left: 83%;
+}
+/* repos */
+.hobbie5 {
+  width: 40rem;
+  height: 20rem;
+  top: 100%;
+  left: 50%;
+}
+
+/* voyage */
+.hobbie6 {
+  width: 20rem;
+  height: 35rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+}
+
+.hobbie img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/*#######################################-- Contact --#######################################*/
+
+.contact {
   height: 500px;
+  background-color: red;
 }

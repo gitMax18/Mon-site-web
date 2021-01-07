@@ -68,12 +68,13 @@ tlCube = gsap.timeline({paused : true})
 
     gsap.from(".presentation h1", {
         transform : "scale(0.2)",
-        y : 200,
+        x : -900,
+        // y : 200,
         ease : "expo.out",
         scrollTrigger : {
             trigger : ".presentation",
             start : "top bottom",
-            end : "bottom center",
+            // end : "bottom center",
             scrub : true,
             // markers : true,
         }
@@ -102,13 +103,15 @@ tlCube = gsap.timeline({paused : true})
     // Animation for the title
 
     gsap.from(".parcour h1", {
-        transform : "scale(0.2)",
-        y : 200,
+        transform : "scale(0.5)",
+        opacity :0,
+        x : 500,
+        // y : 200,
         ease : "expo.out",
         scrollTrigger : {
-            trigger : ".parcour",
+            trigger : ".svg1",
             start : "top bottom",
-            end : "bottom top+=90vh",
+            end : "bottom center-=10%",
             scrub : true,
         }
     })
@@ -120,7 +123,7 @@ tlCube = gsap.timeline({paused : true})
         scrollTrigger : {
             trigger : ".parcour",
             scrub : 0.5,
-            markers : true,
+            // markers : true,
             start : "top+=20% bottom",
             end : "bottom bottom+=40%",
         },
@@ -242,7 +245,7 @@ tlCube = gsap.timeline({paused : true})
             end : "center center+=35%",
         }
     })
-    
+
 
     // Animation for the graphique 
 
@@ -324,4 +327,60 @@ tlCube = gsap.timeline({paused : true})
         })
     })
     
+// #######################################-- Hobbies --#######################################
 
+
+gsap.from(".hobbies_container h1", {
+    transform : "scale(0.2)",
+    y : 200,
+    ease : "expo.out",
+    scrollTrigger : {
+        trigger : ".hobbies_container",
+        start : "top bottom",
+        end : "bottom center",
+        scrub : true,
+        // markers : true,
+    }
+})
+
+let count = 1;
+
+
+function toggleZindex (element = ".txt1"){
+    console.log(element);
+    console.log(count);
+     if(count === 1){
+         gsap.set(element, {zIndex : 100})
+     }else {
+         gsap.set(element, {zIndex : 0})
+     }
+     count = count % 1
+}
+
+
+const setTxt = gsap.timeline({paused : true}) 
+.fromTo(".txt1", {x : "-120%"},{x : "150%", duration: 10, repeat : -1, onRepeat : toggleZindex(), onRepeatParams: [".txt1"]},0) 
+.fromTo(".txt2", {x : "150%", zIndex : 100},{x : "-150%", duration: 10,repeat : -1},4) 
+.fromTo(".txt3", {x : "-120%"},{x : "150%", duration: 10,repeat : -1},6) 
+.fromTo(".txt4", {x : "150%", zIndex : 100},{x : "-150%", duration: 10,repeat : -1},8) 
+.fromTo(".txt5", {x : "-120%"},{x : "150%", duration: 10,repeat : -1},3) 
+.fromTo(".txt6", {x : "150%", zIndex : 100},{x : "-150%", duration: 10,repeat : -1},6) 
+
+const setImgs = gsap.timeline({scrollTrigger : {
+    trigger : ".hobbies_content",
+    scrub : true,
+    start : "top-=30% center",
+    end : "bottom-=10% center",
+    markers : true,
+}})
+.from(".hobbie", {
+    top : "50%", 
+    left : "50%", 
+    transform : "translate(-50% -50%)",
+    ease : Expo.Out, duration :2,
+    onComplete : setTxt.play(),
+})
+// .from(".hobbie6", {transform : "scale(0.5)", transformOrigin : "-25% -25%"}, 0)
+// .to(".hobbie6", {transform : "scale(1.5)",  transformOrigin : "150% 150%" ,duration : 1, })
+// .to(".hobbies_content", {transform : "rotateY(180deg)" , duration : 3})
+// .to(".hobbie1" , {transform : "translateZ(100px)"}, 0)
