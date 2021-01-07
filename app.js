@@ -1,5 +1,8 @@
 gsap.registerPlugin(ScrollTrigger, CSSRulePlugin);
 
+
+// #######################################-- Start --#######################################
+
 window.onload = () => {
 
     tlStart = gsap.timeline({onComplete : ()=> {
@@ -9,7 +12,7 @@ window.onload = () => {
     // .to(".start_container", {autoAlpha : 0, duration : 2}, "+=1")
     // .to(".start_container h1", {autoAlpha : 0, duration : 1, transform : "scale(5)"}, "-=2")
     .from(".landing_container", {autoAlpha : 0, duration : 0.5})
-    .from(".left_box span", {
+    .from(".landing_left_box span", {
         duration :0.4,
         stagger : 0.2,
         autoAlpha : 0,
@@ -19,7 +22,7 @@ window.onload = () => {
     })
 
     .from(".containerCube", {autoAlpha:0, x : 200, duration : 2, ease  : "expo.out"})
-    .from(".left_box p", {x : -100, autoAlpha : 0, duration : 2, ease : "expo.out", onComplete : ()=> tlCube.play()}, "-=1")
+    .from(".landing_left_box p", {x : -100, autoAlpha : 0, duration : 2, ease : "expo.out", onComplete : ()=> tlCube.play()}, "-=1")
 
 }
 
@@ -36,7 +39,7 @@ tlCube = gsap.timeline({paused : true})
     .to(".faceBack",{transform : "rotateX(-180deg) translateZ(200px)", duration : 0.8 ,ease : "expo.out" }, 0)
 
 
-    // animation au scroll de la landingPage
+// animation au scroll de la landingPage
 
     const tl = gsap.timeline({
         scrollTrigger: {
@@ -47,23 +50,11 @@ tlCube = gsap.timeline({paused : true})
         onLeaveBack : ()=> tlCube.play(),
         }
     })
-    .to([".left_box", ".right_box"], {
+    .to([".landing_left_box", ".landing_right_box"], {
         yPercent : 30,
         transform : "scale(0.8)", 
         onStart : ()=> tlCube.reverse(),
     }, 0)
-
-
-    // gsap.to([".left_box", ".right_box"], {yPercent : 20, scrollTrigger : {
-    //     trigger : ".landing_container",
-    //     start : "top top",
-    //     end : "bottom top",
-    //     scrub : true,
-    //     ease : "expo.in",
-    //     onLeaveBack : ()=> tlCube.play(),
-    //     onStart : ()=> tlCube.reverse(),
-    //      }
-    // })
 
     gsap.to(".landing_container", {opacity : 0, scrollTrigger : {
         trigger : ".landing_container",
@@ -73,7 +64,7 @@ tlCube = gsap.timeline({paused : true})
     }})
 
 
-    // section présentation
+// #######################################-- Presentation --#######################################
 
     gsap.from(".presentation h1", {
         transform : "scale(0.2)",
@@ -102,8 +93,13 @@ tlCube = gsap.timeline({paused : true})
         } 
     })
 
-    // section Parcour
+// #######################################-- Parcour --#######################################
 
+    //rotation for set the back card in the back
+    gsap.set(".card_box_back", {rotateY : "180deg"})
+
+
+    // Animation for the title
 
     gsap.from(".parcour h1", {
         transform : "scale(0.2)",
@@ -117,6 +113,8 @@ tlCube = gsap.timeline({paused : true})
         }
     })
    
+
+    // Animation for the stroke
 
     const tlParcourLigne = gsap.timeline({
         scrollTrigger : {
@@ -143,7 +141,6 @@ tlCube = gsap.timeline({paused : true})
         gsapLigne4.reverse()
     }
     })
-
 
     const gsapLigne2  = gsap.from(".ligne2 rect", {
         transform : "scale(0)", 
@@ -183,7 +180,10 @@ tlCube = gsap.timeline({paused : true})
         }
     })
 
-    const gsapCard1 = gsap.from(".content_box1", 
+
+    //Animation for the Card
+
+    const gsapCard1 = gsap.from(".card_1", 
     {
         opacity : 0,
         x : -300,
@@ -192,7 +192,7 @@ tlCube = gsap.timeline({paused : true})
         onStart : ()=> graph1.play(),
     })
 
-    const gsapCard2 = gsap.from(".content_box2", {
+    const gsapCard2 = gsap.from(".card_2", {
         delay : 0.3,
         opacity : 0,
         x : 300,
@@ -201,7 +201,7 @@ tlCube = gsap.timeline({paused : true})
         onStart : ()=> graph2.play(),
     })
 
-    const gsapCard4 = gsap.from(".content_box4", {
+    const gsapCard4 = gsap.from(".card_4", {
         delay : 0.3,
         opacity : 0,
         x : -300,
@@ -211,7 +211,7 @@ tlCube = gsap.timeline({paused : true})
 
     })
  
-    const gsapCard5 = gsap.from(".content_box5", {
+    const gsapCard5 = gsap.from(".card_5", {
         opacity : 0,
         x : 300,
         duration : 1.5,
@@ -220,128 +220,65 @@ tlCube = gsap.timeline({paused : true})
     
     })
     
-    const gsapCard3 = gsap.from(".content_box3", {
+    const gsapCard3 = gsap.from(".card_3", {
         transform : "scale(0)", 
         onStart : ()=> graph3.play(),
         scrollTrigger : {
-            trigger : ".content_box3",
+            trigger : ".card_3",
             scrub : true,
             end : "center center"
         }
     })
 
-    const gsapCard6 = gsap.from(".content_box6", {
+    const gsapCard6 = gsap.from(".card_6", {
         y : 200,
         opacity : 0,
         duration : 1.5,
         onStart : ()=> graph6.play(),
         scrollTrigger : {
-            trigger : ".content_box6",
+            trigger : ".card_6",
             scrub : true,
             start : "top bottom-=10%",
             end : "center center+=35%",
         }
     })
+    
 
-    // Animation des graphiques 
+    // Animation for the graphique 
 
     const graph1 = gsap.timeline({paused : true,})
     .from(".circleBox1", {strokeDashoffset : 691, duration : 3})
-    .from(".box_graphique1 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+    .from(".card_graphique1 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
 
 
     const graph2 = gsap.timeline({paused : true})
     .from(".circleBox2", {strokeDashoffset : 691, duration : 3})
-    .from(".box_graphique2 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+    .from(".card_graphique2 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
 
 
     const graph3 = gsap.timeline({paused : true})
     .from(".circleBox3", {strokeDashoffset : 691, duration : 3})
-    .from(".box_graphique3 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+    .from(".card_graphique3 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
 
 
     const graph4 = gsap.timeline({paused : true})
     .from(".circleBox4", {strokeDashoffset : 691, duration : 3})
-    .from(".box_graphique4 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+    .from(".card_graphique4 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
 
 
     const graph5 = gsap.timeline({paused : true})
     .from(".circleBox5", {strokeDashoffset : 691, duration : 3})
-    .from(".box_graphique5 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+    .from(".card_graphique5 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
 
 
     const graph6 = gsap.timeline({paused : true})
     .from(".circleBox6", {strokeDashoffset : 691, duration : 3})
-    .from(".box_graphique6 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
-
-
-    
-
-    // const tlLigne2 = gsap.from(".ligne2 rect", {
-    //     paused : true,
-    //     transform : "scaleX(0)",
-    //     stagger : {
-    //         amount : 0.2,
-    //         from : "center",
-    //     },
-    // })
-
-    // gsap.from(".ligne1 rect", {
-    //     transform : "scale(0)",
-    //     stagger : {
-    //         each : 0.5,
-    //         from : "start",
-    //     },
-    //     scrollTrigger : {
-    //         trigger : ".ligne1 rect",
-    //         start : "top bottom",
-    //         end : "top top",
-    //         scrub : true,
-    //         onEnterBack : ()=> tlLigne2.reverse(),
-    //     markers : true,
-    //     },
-    //     onComplete : ()=> tlLigne2.play()
-    // })
-
-    // gsap.from(".ligne3 rect", {
-    //     transform : "scale(0)",
-    //     stagger : {
-    //         each : 0.5,
-    //         from : "start",
-    //     },
-    //     scrollTrigger : {
-    //         trigger : ".ligne3 rect",
-    //         start : "top bottom",
-    //         end : "top top",
-    //         scrub : true,
-    //         // onEnterBack : ()=> tlLigne2.reverse(),
-    //     markers : true,
-    //     },
-    //     // onComplete : ()=> tlLigne2.play()
-    // })
+    .from(".card_graphique6 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
 
 
 
 
-    // gsap.from(".ligne rect", {
-    //     transform : "scale(0)",
-    //     stagger : {
-    //         each : 0.5,
-    //         from : "start",
-    //     },
-    //     scrollTrigger : {
-    //         trigger : ".ligne rect",
-    //         start : "top center",
-    //         end : "bottom bottom",
-    //         scrub : true,
-    //         onEnterBack : ()=> tlLigne2.reverse(),
-    //     markers : true,
-    //     },
-    //     onComplete : ()=> tlLigne2.play()
-    // })
-
-    //placement box
-
+    //Function to set the card in the good place
 
     function getBoxPosition (svg , box) {
         const ligne = document.querySelector(svg);
@@ -354,24 +291,37 @@ tlCube = gsap.timeline({paused : true})
         const box_H = card.offsetHeight;
 
         return {x : ligne_X, y : ligne_Y , w : box_W, h : box_H, lH : ligne_H}
-    
     }
 
-    const dataBox1  = getBoxPosition(".svg2", ".content_box1")
-    const dataBox2  = getBoxPosition(".svg2", ".content_box2")
-    const dataBox3  = getBoxPosition(".svg3", ".content_box3")
-    const dataBox4  = getBoxPosition(".svg4", ".content_box4")
-    const dataBox5  = getBoxPosition(".svg4", ".content_box5")
-    const dataBox6  = getBoxPosition(".svg5", ".content_box6")
+    const dataBox1  = getBoxPosition(".svg2", ".card_1")
+    const dataBox2  = getBoxPosition(".svg2", ".card_2")
+    const dataBox3  = getBoxPosition(".svg3", ".card_3")
+    const dataBox4  = getBoxPosition(".svg4", ".card_4")
+    const dataBox5  = getBoxPosition(".svg4", ".card_5")
+    const dataBox6  = getBoxPosition(".svg5", ".card_6")
+
+    gsap.set(".card_1", {left : dataBox1.x - dataBox1.w, top : dataBox1.y - (dataBox1.h / 2)})
+    gsap.set(".card_2", {right : dataBox2.x - dataBox2.w, top : dataBox2.y - (dataBox2.h / 2)})
+    gsap.set(".card_3", {left : (dataBox3.x - (dataBox3.w / 2) + 3.5), top :(dataBox3.y + (dataBox3.lH / 2) - (dataBox3.h / 2) )})
+    gsap.set(".card_4", {left : dataBox4.x - dataBox4.w, top : dataBox4.y - (dataBox4.h / 2)})
+    gsap.set(".card_5", {right : dataBox5.x - dataBox5.w, top : dataBox5.y - (dataBox5.h / 2)})
+    gsap.set(".card_6", {left : (dataBox6.x - (dataBox6.w / 2) + 3.5), top : dataBox6.y + dataBox6.lH})
 
 
-    gsap.set(".content_box1", {left : dataBox1.x - dataBox1.w, top : dataBox1.y - (dataBox1.h / 2)})
-    gsap.set(".content_box2", {right : dataBox2.x - dataBox2.w, top : dataBox2.y - (dataBox2.h / 2)})
-    gsap.set(".content_box3", {left : (dataBox3.x - (dataBox3.w / 2) + 3.5), top :(dataBox3.y + (dataBox3.lH / 2) - (dataBox3.h / 2) )})
-    // gsap.set(".content_box3", {left : dataBox3.x - (dataBox2.w / 2) + 3.5, top : dataBox3.y + dataBox3.h / 4})
+    // Animate rotation on click for the card
 
-    gsap.set(".content_box4", {left : dataBox4.x - dataBox4.w, top : dataBox4.y - (dataBox4.h / 2)})
-    gsap.set(".content_box5", {right : dataBox5.x - dataBox5.w, top : dataBox5.y - (dataBox5.h / 2)})
-    gsap.set(".content_box6", {left : (dataBox6.x - (dataBox6.w / 2) + 3.5), top : dataBox6.y + dataBox6.lH})
-
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+        const cardContent = card.firstElementChild;
+        card.addEventListener("click", ()=> {
+            if(card.classList.contains("active")){
+                gsap.to(cardContent, {rotateY : "360deg", duration : 1, ease : Back.easeIn.config(1)})
+                card.classList.remove("active")
+            }else{
+                card.classList.add("active")
+                gsap.to(cardContent, {rotateY : "180deg", duration : 2,ease: Back.easeOut.config(1)})
+            }
+        })
+    })
+    
 

@@ -15,11 +15,22 @@ html {
   overflow-x: hidden;
 }
 
+.body {
+  overflow: hidden;
+}
+
 :root {
   --primary-color: #000;
   --secondary-color: #7c90a0;
   --strong-color: #a8201a;
 }
+
+.wrapper {
+  max-width: 1900px;
+  margin: 0 auto;
+}
+
+/*#######################################-- Start --#######################################*/
 
 .start_container {
   position: absolute;
@@ -39,15 +50,21 @@ html {
   color: white;
 }
 
+/*#######################################-- Landing --#######################################*/
+
+.landing {
+  background: var(--primary-color);
+  width: 100%;
+  height: 100vh;
+}
+
 .landing_container {
   height: 100vh;
   width: 100%;
-  background: var(--primary-color);
   display: flex;
-  perspective: 2px;
 }
 
-.left_box {
+.landing_left_box {
   flex-basis: 60%;
   color: white;
   display: flex;
@@ -57,25 +74,25 @@ html {
   padding-left: 10rem;
 }
 
-.nom {
+.landing_firstName {
   margin-bottom: -30px;
 }
 
-.left_box span {
+.landing_left_box span {
   font-size: 15rem;
   font-family: Caveat Brush, sans-serif;
   display: inline-block;
   padding-right: 1rem;
 }
 
-.left_box p {
+.landing_left_box p {
   font-size: 4rem;
   font-family: Montserrat;
   letter-spacing: 0.5rem;
   color: #fee140;
 }
 
-.right_box {
+.landing_right_box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -145,16 +162,14 @@ html {
   }
 }
 
-/* .absolute {
-  position: absolute;
-  top: 100vh;
-  left: 0;
-  width: 100%;
-} */
+/*#######################################-- Presentation --#######################################*/
 
 .presentation {
-  /* margin-top: 20rem; */
-  padding: 10rem 10rem 10rem;
+  width: 100%;
+}
+
+.presentation_container {
+  padding: 10rem 20rem 10rem;
 }
 
 .presentation h1,
@@ -174,21 +189,26 @@ html {
   content: "";
   width: 60%;
   height: 3px;
-  /* position: relative; */
   background-color: black;
 }
 
 .presentation p {
   font-size: 2rem;
   font-family: Montserrat, serif;
-  /* width: 70%; */
   margin: 0 auto;
   line-height: 5rem;
   height: 100%;
   text-align: center;
 }
 
+/*#######################################-- Parcour --#######################################*/
+
 .parcour {
+  position: relative;
+  width: 100%;
+}
+
+.parcour_container {
   padding: 0 10rem 70rem;
   position: relative;
 }
@@ -200,58 +220,77 @@ html {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
 }
 
-.content_box {
+.card {
   width: 35rem;
   height: 45rem;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  perspective: 800px;
   position: absolute;
+  /* position définit en JS */
   z-index: 1000;
+  border-radius: 10px;
+  background: transparent;
 }
 
-/* .content_box1 {
-  top: 23%;
-  left: 18%;
-} */
-
-/* .content_box2 {
-  top: 23%;
-  right: 18%;
-} */
-
-/* .content_box3 {
-} */
-
-/* .content_box4 {
-  top: 90%;
-  left: ;
+.card_box {
+  width: inherit;
+  height: inherit;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  z-index: 1000;
+  transform-style: preserve-3d;
 }
 
-.content_box5 {
-  top: 90%;
-  left: ;
+.card_box_front {
+  width: inherit;
+  height: inherit;
 }
 
-.content_box6 {
-  top: 90%;
-  left: ;
-} */
+.card_box_back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  backface-visibility: hidden;
+  border-radius: 10px;
+}
 
-.box_img {
+.card_box_back h2 {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  background: white;
+  border-radius: 10px 10px 0 0;
+}
+
+.card_box_back_infos {
+  padding: 4rem;
+}
+
+.card_box_back ul li {
+  font-size: 2rem;
+}
+
+.card_img {
   width: 100%;
   height: 40%;
 }
 
-.box_img img {
+.card_img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
 
-.box_graphique {
+.card_graphique {
   height: 60%;
   width: 100%;
   position: relative;
@@ -259,56 +298,53 @@ html {
   border-radius: 0 0 10px 10px;
 }
 
-.box_graphique svg {
+.card_graphique svg {
   width: 100%;
   height: 100%;
   margin: 0 auto;
   border-radius: 0 0 10px 10px;
 }
 
-.box_graphique svg circle {
+.card_graphique svg circle {
   fill: transparent;
-  /* stroke: green; */
   stroke-width: 2rem;
   transform: translate(1rem, 1rem);
   stroke-dasharray: 691;
-  /* stroke-dashoffset: 69; */
   stroke-linecap: round;
-  z-index: 100;
 }
 
-.box_graphique svg g circle:nth-child(1) {
+.card_graphique svg g circle:nth-child(1) {
   stroke: rgb(236, 234, 234);
   stroke-dashoffset: 0;
 }
 
-.box_graphique1 svg g circle:nth-child(2) {
+.card_graphique1 svg g circle:nth-child(2) {
   stroke: #22a900;
   stroke-dashoffset: 69;
 }
 
-.box_graphique2 svg g circle:nth-child(2) {
+.card_graphique2 svg g circle:nth-child(2) {
   stroke: #66b400;
   stroke-dashoffset: 104;
 }
-.box_graphique3 svg g circle:nth-child(2) {
+.card_graphique3 svg g circle:nth-child(2) {
   stroke: #95bd63;
   stroke-dashoffset: 276;
 }
-.box_graphique4 svg g circle:nth-child(2) {
+.card_graphique4 svg g circle:nth-child(2) {
   stroke: #95bd5c;
   stroke-dashoffset: 242;
 }
-.box_graphique5 svg g circle:nth-child(2) {
+.card_graphique5 svg g circle:nth-child(2) {
   stroke: #f0af09;
   stroke-dashoffset: 345;
 }
-.box_graphique6 svg g circle:nth-child(2) {
+.card_graphique6 svg g circle:nth-child(2) {
   stroke: #f2164b;
   stroke-dashoffset: 484;
 }
 
-.box_graphique span {
+.card_graphique span {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -317,7 +353,13 @@ html {
   font-family: Caveat Brush, serif;
 }
 
-.contact {
-  height: 500px;
+/*#######################################-- Hobbies --#######################################*/
+
+.hobbies {
   background-color: red;
+  width: 100%;
+}
+
+.hobbies_container {
+  height: 500px;
 }
