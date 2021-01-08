@@ -70,6 +70,7 @@ tlCube = gsap.timeline({paused : true})
         transform : "scale(0.2)",
         x : -900,
         // y : 200,
+        opacity : 0,
         ease : "expo.out",
         scrollTrigger : {
             trigger : ".presentation",
@@ -183,6 +184,40 @@ tlCube = gsap.timeline({paused : true})
         }
     })
 
+    // Animation for the graphique 
+
+    const graph1 = gsap.timeline({paused : true,})
+    .from(".circleBox1", {strokeDashoffset : 691, duration : 3})
+    .from(".card_graphique1 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+
+
+    const graph2 = gsap.timeline({paused : true})
+    .from(".circleBox2", {strokeDashoffset : 691, duration : 3})
+    .from(".card_graphique2 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+
+
+    const graph3 = gsap.timeline({paused : true})
+    .from(".circleBox3", {strokeDashoffset : 691, duration : 3})
+    .from(".card_graphique3 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+
+
+    const graph4 = gsap.timeline({paused : true})
+    .from(".circleBox4", {strokeDashoffset : 691, duration : 3})
+    .from(".card_graphique4 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+
+
+    const graph5 = gsap.timeline({paused : true})
+    .from(".circleBox5", {strokeDashoffset : 691, duration : 3})
+    .from(".card_graphique5 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+
+
+    const graph6 = gsap.timeline({paused : true})
+    .from(".circleBox6", {strokeDashoffset : 691, duration : 3})
+    .from(".card_graphique6 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
+
+
+
+
 
     //Animation for the Card
 
@@ -228,7 +263,7 @@ tlCube = gsap.timeline({paused : true})
         onStart : ()=> graph3.play(),
         scrollTrigger : {
             trigger : ".card_3",
-            scrub : true,
+            scrub : 0.5,
             end : "center center"
         }
     })
@@ -247,39 +282,7 @@ tlCube = gsap.timeline({paused : true})
     })
 
 
-    // Animation for the graphique 
-
-    const graph1 = gsap.timeline({paused : true,})
-    .from(".circleBox1", {strokeDashoffset : 691, duration : 3})
-    .from(".card_graphique1 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
-
-
-    const graph2 = gsap.timeline({paused : true})
-    .from(".circleBox2", {strokeDashoffset : 691, duration : 3})
-    .from(".card_graphique2 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
-
-
-    const graph3 = gsap.timeline({paused : true})
-    .from(".circleBox3", {strokeDashoffset : 691, duration : 3})
-    .from(".card_graphique3 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
-
-
-    const graph4 = gsap.timeline({paused : true})
-    .from(".circleBox4", {strokeDashoffset : 691, duration : 3})
-    .from(".card_graphique4 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
-
-
-    const graph5 = gsap.timeline({paused : true})
-    .from(".circleBox5", {strokeDashoffset : 691, duration : 3})
-    .from(".card_graphique5 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
-
-
-    const graph6 = gsap.timeline({paused : true})
-    .from(".circleBox6", {strokeDashoffset : 691, duration : 3})
-    .from(".card_graphique6 span", {opacity : 0, transform : "scale(0)", duration : 1, ease : "Back.easeOut"}, 1)
-
-
-
+    
 
     //Function to set the card in the good place
 
@@ -329,6 +332,7 @@ tlCube = gsap.timeline({paused : true})
     
 // #######################################-- Hobbies --#######################################
 
+// Title Animation
 
 gsap.from(".hobbies_container h1", {
     transform : "scale(0.2)",
@@ -343,28 +347,47 @@ gsap.from(".hobbies_container h1", {
     }
 })
 
-let count = 1;
 
+// Txt Animation
 
-function toggleZindex (element = ".txt1"){
-    console.log(element);
-    console.log(count);
-     if(count === 1){
+function toggleZindex (element){
+    const index = gsap.getProperty(element , "zIndex")
+     if(index === 0){
          gsap.set(element, {zIndex : 100})
      }else {
          gsap.set(element, {zIndex : 0})
      }
-     count = count % 1
 }
+const txtsData = [];
+const txts = document.querySelectorAll(".txt").forEach(txt => {
+    txtsData.push(txt.offsetWidth)
+})
+console.log(txtsData);
+
+gsap.set(".txt", {autoAlpha : 0})
+
+const setTxt = gsap.timeline({paused : true, defaults : {ease : Linear.easeNone, duration : 10, onRepeat :toggleZindex, repeat : -1}})
+.fromTo(".txt1", {xPercent : -100, zIndex : 0, opacity : 0},{opacity :0, xPercent : 130,onRepeatParams: [".txt1"]},5)
+.to(".txt1" , {autoAlpha : 1, duration : 5 ,yoyo : true},5) //warning console
+
+.fromTo(".txt2", {xPercent : 130, zIndex : 100},{xPercent : -100, onRepeatParams : [".txt2"]},3) 
+.to(".txt2" , {autoAlpha : 1, duration : 5 ,yoyo : true},3)//warning console
+
+.fromTo(".txt3", {xPercent : -100, zIndex : 0},{xPercent : 130, onRepeatParams : [".txt3"]},0) 
+.to(".txt3" , {autoAlpha : 1, duration : 5 ,yoyo : true},0) //warning console
+
+.fromTo(".txt4", {xPercent : 130, zIndex : 100},{xPercent : -100, onRepeatParams : [".txt4"]},4) 
+.to(".txt4" , {autoAlpha : 1, duration : 5 ,yoyo : true},4) //warning console
+
+.fromTo(".txt5", {xPercent : -100, zIndex :0},{xPercent : 130, onRepeatParams : [".txt5"]},6) 
+.to(".txt5" , {autoAlpha : 1, duration : 5 ,yoyo : true},6) //warning console
+
+.fromTo(".txt6", {xPercent : 130, zIndex : 100},{xPercent : -100, onRepeatParams : [".txt6"]},10) 
+.to(".txt6" , {autoAlpha : 1, duration : 5 ,yoyo : true},10) //warning console
 
 
-const setTxt = gsap.timeline({paused : true}) 
-.fromTo(".txt1", {x : "-120%"},{x : "150%", duration: 10, repeat : -1, onRepeat : toggleZindex(), onRepeatParams: [".txt1"]},0) 
-.fromTo(".txt2", {x : "150%", zIndex : 100},{x : "-150%", duration: 10,repeat : -1},4) 
-.fromTo(".txt3", {x : "-120%"},{x : "150%", duration: 10,repeat : -1},6) 
-.fromTo(".txt4", {x : "150%", zIndex : 100},{x : "-150%", duration: 10,repeat : -1},8) 
-.fromTo(".txt5", {x : "-120%"},{x : "150%", duration: 10,repeat : -1},3) 
-.fromTo(".txt6", {x : "150%", zIndex : 100},{x : "-150%", duration: 10,repeat : -1},6) 
+
+// Pictures animation
 
 const setImgs = gsap.timeline({scrollTrigger : {
     trigger : ".hobbies_content",
@@ -372,15 +395,18 @@ const setImgs = gsap.timeline({scrollTrigger : {
     start : "top-=30% center",
     end : "bottom-=10% center",
     markers : true,
-}})
-.from(".hobbie", {
-    top : "50%", 
-    left : "50%", 
-    transform : "translate(-50% -50%)",
-    ease : Expo.Out, duration :2,
-    onComplete : setTxt.play(),
-})
-// .from(".hobbie6", {transform : "scale(0.5)", transformOrigin : "-25% -25%"}, 0)
-// .to(".hobbie6", {transform : "scale(1.5)",  transformOrigin : "150% 150%" ,duration : 1, })
-// .to(".hobbies_content", {transform : "rotateY(180deg)" , duration : 3})
-// .to(".hobbie1" , {transform : "translateZ(100px)"}, 0)
+}, defaults : {ease : Expo.Out, duration : 2},
+    onStart : ()=> setTxt.play(),
+    // onReverseComplete : ()=>{
+    //     setTxt.time(0)
+    //     setTxt.pause()
+    // } 
+},)
+.fromTo(".hobbie1", {top : "50%", left : "50%", transform : "translate(-50% -50%)"}, {top : "15%", left : "20%"}, 0)
+.fromTo(".hobbie2", {top : "50%", left : "50%", transform : "translate(-50% -50%)"}, {top : "60%", left : "20%"}, 0)
+.fromTo(".hobbie3", {top : "50%", left : "50%", transform : "translate(-50% -50%)"}, {top : "20%", left : "80%"}, 0)
+.fromTo(".hobbie4", {top : "50%", left : "50%", transform : "translate(-50% -50%)"}, {top : "65%", left : "83%"}, 0)
+.fromTo(".hobbie5", {top : "50%", left : "50%", transform : "translate(-50% -50%)"}, {top : "100%", left : "50%"}, 0)
+.fromTo(".hobbie6", {top : "50%", left : "50%", transform : "translate(-50% -50%) ", scale : 0.5},{transform : "translate(-50% -50%)", scale : 1.2}, 0)
+
+
