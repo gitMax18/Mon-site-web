@@ -1,0 +1,32 @@
+{
+  "name": "site-cv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "gsap": "^3.5.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.1",
+    "parcel-bundler": "^1.12.4",
+    "postcss": "^8.2.3",
+    "postcss-cli": "^8.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel src/index.html",
+    "build": "parcel src/index.html",
+    "prefix" : "postcss src/styles/style.css --use autoprefixer -d src/styles/prefixed/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitMax18/Mon-site-web.git"
+  },
+  "author": "Jean Maxime",
+  "license": "ISC",
+  "browserslist" : "last 4 versions",
+  "bugs": {
+    "url": "https://github.com/gitMax18/Mon-site-web/issues"
+  },
+  "homepage": "https://github.com/gitMax18/Mon-site-web#readme"
+}
