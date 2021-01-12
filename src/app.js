@@ -1,7 +1,6 @@
 import {gsap, Expo, Back} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
-import ScrollBar ,{ScrollbarPlugin} from "smooth-scrollbar";
-// import {Expo, Back} from "gsap/all";
+import ScrollBar from "smooth-scrollbar";
 
 
 
@@ -10,27 +9,40 @@ import ScrollBar ,{ScrollbarPlugin} from "smooth-scrollbar";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const bodyScrollBar = ScrollBar.init(document.querySelector("#scrollBar"))
+// const bodyScrollBar = ScrollBar.init(document.querySelector("#scrollBar"))
+// bodyScrollBar.track.xAxis.element.remove();
+// // bodyScrollBar.scrollWidth = 0;
+
+
+// ScrollTrigger.scrollerProxy("#scrollBar",{
+//     scrollTop(value = 0.05){
+//         if(arguments.length){
+//             bodyScrollBar.scrollTop = value;
+//         }
+//         return bodyScrollBar.scrollTop
+//     },
+// })
+
+// bodyScrollBar.addListener(ScrollTrigger.update)
+
+const bodyScrollBar = ScrollBar.init(document.body,{
+    delegateTo :document
+})
 bodyScrollBar.track.xAxis.element.remove();
 // bodyScrollBar.scrollWidth = 0;
 
 
-ScrollTrigger.scrollerProxy("#scrollBar",{
+ScrollTrigger.scrollerProxy(document.body,{
     scrollTop(value = 0.05){
         if(arguments.length){
             bodyScrollBar.scrollTop = value;
         }
         return bodyScrollBar.scrollTop
     },
-    scrollLeft : (value = 0)=> {
-        if(arguments.length){
-            bodyScrollBar.scrollIntoView = value
-        }
-        return bodyScrollBar.scrollLeft
-    }
 })
 
 bodyScrollBar.addListener(ScrollTrigger.update)
+ScrollTrigger.defaults({scroller : document.body})
 
 
 
@@ -44,8 +56,18 @@ window.onload = () => {
 
 // gsap.set(document.body, {height : heightBody })
 
+const name = gsap.timeline({defaults : {duration : 1, stagger : 0.2,}})
+.from(".firstName span", {height : 0, y : -100},0)
+.from(".lastName span", {scale : 0, y : 100, transformOrigin : "bottom"},0.3)
+.from(".landing_content p", {autoAlpha : 0, scale : 0, ease : Back.easeOut, transformOrigin : "left"})
+
 console.log("salut");
 }
+
+
+// Animation du header
+
+
 
 gsap.timeline({scrollTrigger :{
     trigger : ".landing_container",
@@ -57,7 +79,12 @@ gsap.timeline({scrollTrigger :{
     pinSpacing :false,
 }})
 .to(".landing_container", {clipPath : "ellipse(150vh 0vh at 50% 0vh", ease : "none"})
-.to(".landing_background",{backgroundSize : "150%", backgroundPosition : "-20% 80%"}, 0)
+.to(".landing_background",{backgroundSize : "150%", backgroundPosition : "0% 80%"}, 0)
+.to(".firstName", {y : -200, x : -50, rotateY : -20, transformOrigin : "left"},0)
+.to(".lastName", {y : -200, x : 250, rotateY : 20, transformOrigin : "right"},0)
+.to(".landing_content p", {y : 0, x : 250, rotateX : 360},0)
+
+
 // .to(".landing_background",{scale :1.2, x : "10%", y :"-30%"}, 0)
 
 
