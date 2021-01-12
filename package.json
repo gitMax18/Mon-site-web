@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "gsap": "^3.5.1"
+    "gsap": "^3.5.1",
+    "smooth-scrollbar": "^8.5.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.1",
@@ -16,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.html",
     "build": "parcel src/index.html",
-    "prefix" : "postcss src/styles/style.css --use autoprefixer -d src/styles/prefixed/"
+    "prefix": "postcss src/styles/style.css --use autoprefixer -d src/styles/prefixed/"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,7 @@
   },
   "author": "Jean Maxime",
   "license": "ISC",
-  "browserslist" : "last 4 versions",
+  "browserslist": "last 4 versions",
   "bugs": {
     "url": "https://github.com/gitMax18/Mon-site-web/issues"
   },

@@ -1,99 +1,79 @@
 import {gsap, Expo, Back} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import ScrollBar ,{ScrollbarPlugin} from "smooth-scrollbar";
 // import {Expo, Back} from "gsap/all";
 
+
+
+
+//init smooth scrollBar
+
 gsap.registerPlugin(ScrollTrigger);
+
+const bodyScrollBar = ScrollBar.init(document.querySelector("#scrollBar"))
+bodyScrollBar.track.xAxis.element.remove();
+// bodyScrollBar.scrollWidth = 0;
+
+
+ScrollTrigger.scrollerProxy("#scrollBar",{
+    scrollTop(value = 0.05){
+        if(arguments.length){
+            bodyScrollBar.scrollTop = value;
+        }
+        return bodyScrollBar.scrollTop
+    },
+    scrollLeft : (value = 0)=> {
+        if(arguments.length){
+            bodyScrollBar.scrollIntoView = value
+        }
+        return bodyScrollBar.scrollLeft
+    }
+})
+
+bodyScrollBar.addListener(ScrollTrigger.update)
+
+
 
 
 
 // #######################################-- Start --#######################################
 
 window.onload = () => {
+//     const heightBody = document.body.clientHeight
+//     console.log(heightBody);
 
-   const tlStart = gsap.timeline({onComplete : ()=> {
-        // gsap.to("html", {overflowY : "auto"})
-    }})
-    // .from(".start_container h1", {autoAlpha : 0, duration : 3}, "+=0.5")
-    // .to(".start_container", {autoAlpha : 0, duration : 2}, "+=1")
-    // .to(".start_container h1", {autoAlpha : 0, duration : 1, transform : "scale(5)"}, "-=2")
-    .from(".landing_container", {autoAlpha : 0, duration : 0.5})
-    .from(".landing_left_box span", {
-        duration :0.4,
-        stagger : 0.2,
-        autoAlpha : 0,
-        y : -50,
-        ease : "expo.out",
-        scale : 2,
-    })
+// gsap.set(document.body, {height : heightBody })
 
-    .from(".containerCube", {autoAlpha: 0, x : 200, duration : 2, ease  : Expo.out})
-    .from(".landing_left_box p", {x : -100, autoAlpha : 0, duration : 2, ease : Expo.out}, "-=1")
-//onComplete tlCube.play()
+console.log("salut");
 }
 
+gsap.timeline({scrollTrigger :{
+    trigger : ".landing_container",
+    scrub : true,
+    start : "bottom bottom",
+    end : "bottom top",
+    pin : true,
+    pinType : "transform",
+    pinSpacing :false,
+}})
+.to(".landing_container", {clipPath : "ellipse(150vh 0vh at 50% 0vh", ease : "none"})
+.to(".landing_background",{backgroundSize : "150%", backgroundPosition : "-20% 80%"}, 0)
+// .to(".landing_background",{scale :1.2, x : "10%", y :"-30%"}, 0)
 
-
-// Animation du cube
-
-gsap.set(".containerCube", {perspective : "1000px"})
-
-gsap.set(".cube" , {transformStyle : "preserve-3d"})
-
-gsap.set(".faceTop",{rotateX : "90deg" , transform : "translateZ(100px)"})
-
-const tlCube = gsap.timeline({defaults : {duration : 5, ease : Expo.out}})
-    .fromTo(".faceTop",{rotateX : "90deg" , transform : "translateZ(100px)"}, {z : "200px"}, 0)
-    .fromTo(".faceBottom",{rotateX : "-90deg" , z : 100}, {z : 200}, 0)
-    .fromTo(".faceRight",{rotateY : "90deg" , z : 100} , {z : 200}, 0)
-    .fromTo(".faceLeft", {rotateY : "-90deg" , z : 100}, {z : 200}, 0)
-    .fromTo(".faceFront ",{rotateX : "0deg" , z : 100}, {z :200}, 0)
-    .fromTo(".faceBack",{rotateX : "-180deg" , z : 100}, {z : 200}, 0)
-
-    // .to(".faceTop",{transform : "rotateX(90deg) translateZ(200px)", duration : 0.8 ,ease : "expo.out" }, 0)
-    // .to(".faceBottom",{transform : "rotateX(-90deg) translateZ(200px)", duration : 0.8 ,ease : "expo.out" }, 0)
-    // .to(".faceRight",{transform : "rotateY(90deg) translateZ(200px)", duration : 0.8 ,ease : "expo.out" }, 0)
-    // .to(".faceLeft", {transform : "rotateY(-90deg) translateZ(200px)", duration : 0.8 ,ease : "expo.out" }, 0)
-    // .to(".faceFront ",{transform : "rotateX(0deg) translateZ(200px)", duration : 0.8 ,ease : "expo.out" }, 0)
-    // .to(".faceBack",{transform : "rotateX(-180deg) translateZ(200px)", duration : 0.8 ,ease : "expo.out" }, 0)
-
-
-// animation au scroll de la landingPage
-
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".landing_container",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-        onLeaveBack : ()=> tlCube.play(),
-        }
-    })
-    .to([".landing_left_box", ".landing_right_box"], {
-        yPercent : 30,
-        scale : 0.8, 
-        onStart : ()=> tlCube.reverse(),
-    }, 0)
-
-    gsap.to(".landing_container", {autoAlpha : 0, scrollTrigger : {
-        trigger : ".landing_container",
-        start : "center top",
-        scrub : true,
-        ease : Expo.in
-    }})
 
 
 // #######################################-- Presentation --#######################################
 
     gsap.from(".presentation h1", {
-        transform : "scale(0.2)",
+        scale : 1.5,
         x : -900,
-        // y : 200,
-        autoAlpha : 0,
+        y : 200,
+        // autoAlpha : 0,
         ease : Expo.out,
         scrollTrigger : {
-            trigger : ".presentation",
-            start : "top bottom",
-            // end : "bottom center",
+            trigger : ".presentation h1",
+            start : "top-=10% bottom",
+            end : "center center",
             scrub : true,
             // markers : true,
         }
@@ -121,16 +101,16 @@ const tlCube = gsap.timeline({defaults : {duration : 5, ease : Expo.out}})
 
     // Animation for the title
 
-    gsap.from(".parcour h1", {
-        scale : 0.5,
-        autoAlpha :0,
-        x : 500,
-        // y : 200,
+    gsap.from(".parcour_title", {
+        scale : 1.5,
+        x : 900,
+        y : 200,
         ease : Expo.out,
         scrollTrigger : {
-            trigger : ".svg1",
+            trigger : ".parcour h1",
             start : "top bottom",
-            end : "bottom center-=10%",
+            end : "center center",
+            markers : true,
             scrub : true,
         }
     })
@@ -200,6 +180,19 @@ const tlCube = gsap.timeline({defaults : {duration : 5, ease : Expo.out}})
             gsapCard4.reverse()
             gsapCard5.reverse()
         }
+    })
+
+    // Animation for the code
+
+    const codes = document.querySelectorAll(".code")
+    codes.forEach(code => {
+        gsap.from(code, {autoAlpha : 0, duration : 1,delay : 1, scrollTrigger : {
+            trigger : code,
+            start : "bottom-=5% bottom",
+            // end : "top center",
+            markers : true,
+            toggleActions : "play none restart reverse",
+        }})
     })
 
     // Animation for the graphique 
@@ -273,7 +266,6 @@ const tlCube = gsap.timeline({defaults : {duration : 5, ease : Expo.out}})
         duration : 1.5,
         paused : true,
         onStart : ()=> graph5.play(),
-    
     })
     
     const gsapCard3 = gsap.from(".card_3", {
@@ -378,11 +370,11 @@ function toggleZindex (element){
          gsap.set(element, {zIndex : 0})
      }
 }
-const txtsData = [];
-const txts = document.querySelectorAll(".txt").forEach(txt => {
-    txtsData.push(txt.offsetWidth)
-})
-console.log(txtsData);
+// const txtsData = [];
+// const txts = document.querySelectorAll(".txt").forEach(txt => {
+//     txtsData.push(txt.offsetWidth)
+// })
+// console.log(txtsData);
 
 gsap.set(".txt", {autoAlpha : 0})
 
@@ -414,7 +406,7 @@ const setImgs = gsap.timeline({scrollTrigger : {
     scrub : true,
     start : "top-=30% center",
     end : "bottom-=10% center",
-    markers : true,
+    // markers : true,
 }, defaults : {ease : Expo.Out, duration : 2},
     onStart : ()=> setTxt.play(),
     // onReverseComplete : ()=>{

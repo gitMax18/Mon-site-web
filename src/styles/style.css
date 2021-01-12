@@ -9,31 +9,38 @@
   box-sizing: border-box;
 }
 
-html {
+html,
+body {
   font-size: 62.5%;
   /* overflow-y: hidden; */
   overflow-x: hidden;
-}
-
-.body {
-  overflow: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+  height: 100%;
+  width: fit-content;
+  scrollbar-color: var(--color-background);
+  scrollbar-width: 0px;
 }
 
 :root {
   --primary-color: #151515;
   --secondary-color: #7c90a0;
   --strong-color: #a8201a;
+  --color-background: #02dbff;
 }
 
 .wrapper {
   max-width: 1900px;
   margin: 0 auto;
   position: relative;
+  height: inherit;
+  overflow-x: hidden;
+  min-width: 100vw;
 }
 
 /*#######################################-- Start --#######################################*/
 
-.start_container {
+/* .start_container {
   position: absolute;
   top: 0;
   left: 0;
@@ -49,118 +56,58 @@ html {
   font-size: 6rem;
   font-family: Montserrat, sans-serif;
   color: white;
-}
+} */
 
 /*#######################################-- Landing --#######################################*/
 
 .landing {
-  background: var(--primary-color);
-  width: 100%;
   height: 100vh;
+  width: 100%;
+  /* position: relative; */
 }
 
 .landing_container {
+  width: 100%;
   height: 100vh;
-  width: 100%;
-  display: flex;
-}
-
-.landing_left_box {
-  flex-basis: 60%;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: left;
-  flex-direction: column;
-  padding-left: 10rem;
-}
-
-.landing_firstName {
-  margin-bottom: -30px;
-}
-
-.landing_left_box span {
-  font-size: 15rem;
-  font-family: Caveat Brush, sans-serif;
-  display: inline-block;
-  padding-right: 1rem;
-}
-
-.landing_left_box p {
-  font-size: 4rem;
-  font-family: Montserrat;
-  letter-spacing: 0.5rem;
-  color: #fee140;
-}
-
-.landing_right_box {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 40%;
+  background-color: black;
+  clip-path: ellipse(80vw 100vh at 50% 0vh);
 }
 
-/* Effet Cube */
-
-.containerCube {
-  width: 200px;
-  height: 200px;
-  /* perspective: 1000px; */
+.landing_background {
+  width: inherit;
+  height: inherit;
+  background: url("../assets/imgs/background_2.png");
+  background-size: 80%;
+  /* background-size: 120%; */
+  /* position: fixed; */
+  background-repeat: no-repeat;
+  background-position: 90% 60%;
+  /* backface-visibility: hidden; */
+  /* background-position: 0% 60%; */
 }
 
-.cube {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  position: relative;
-  animation: spin 15s infinite linear;
-}
-
-.face {
+.landing_content {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 4rem;
-  background: linear-gradient(#fa709a, #fee140);
-  font-family: Caveat brush, sans-serif;
+  top: 30%;
+  left: 5%;
+  transform: translate(0% -50%);
+  z-index: 100;
+  background-color: transparent;
 }
 
-.faceTop {
-  /* transform: rotateX(90deg) translateZ(100px); */
-  /* animation: explosionTop 15s ease-out infinite; */
+.landing_content h1 {
+  color: white;
+  font-size: 11rem;
+  letter-spacing: 1.2rem;
+  font-family: Caveat Brush, sans-serif;
 }
 
-.faceBottom {
-  /* transform: rotateX(-90deg) translateZ(100px); */
-  /* animation: explosionBottom 15s ease-out infinite; */
-}
-.faceLeft {
-  /* transform: rotateY(-90deg) translateZ(100px); */
-  /* animation: explosionLeft 15s ease-out infinite; */
-}
-.faceRight {
-  /* transform: rotateY(90deg) translateZ(100px); */
-  /* animation: explosionRight 15s ease-out infinite; */
-}
-.faceBack {
-  /* transform: rotateX(-180deg) translateZ(100px); */
-  /* animation: explosionBack 15s ease-out infinite; */
-}
-.faceFront {
-  /* transform: rotateX(0deg) translateZ(100px); */
-  /* animation: explosionFront 15s ease-out infinite; */
-}
-
-@keyframes spin {
-  from {
-    transform: rotateX(0deg) rotateY(0deg);
-  }
-  to {
-    transform: rotateX(360deg) rotateY(360deg);
-  }
+.landing_content p {
+  color: #02dbff;
+  font-size: 7rem;
 }
 
 /*#######################################-- Presentation --#######################################*/
@@ -171,10 +118,14 @@ html {
 
 .presentation_container {
   padding: 10rem 20rem 10rem;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .presentation h1,
-.parcour h1,
 .hobbies h1 {
   font-size: 12rem;
   font-family: Caveat brush, sans-serif;
@@ -199,7 +150,7 @@ html {
   font-family: Montserrat, serif;
   margin: 0 auto;
   line-height: 5rem;
-  height: 100%;
+  /* height: 100%; */
   text-align: center;
 }
 
@@ -213,6 +164,15 @@ html {
 .parcour_container {
   padding: 0 10rem 70rem;
   position: relative;
+}
+
+.parcour h1 {
+  font-size: 12rem;
+  font-family: Caveat brush, sans-serif;
+  margin: 0 auto;
+  margin-bottom: 10rem;
+  width: fit-content;
+  /* background-color: red; */
 }
 
 .parcour_content {
@@ -241,7 +201,6 @@ html {
   height: inherit;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  z-index: 1000;
   transform-style: preserve-3d;
 }
 
@@ -353,6 +312,43 @@ html {
   transform: translate(-50%, -50%);
   font-size: 9rem;
   font-family: Caveat Brush, serif;
+}
+
+.parcour_content > svg {
+  position: relative;
+  z-index: 100;
+}
+
+.code {
+  color: #151515;
+  font-size: 3rem;
+  position: absolute;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.code_html {
+  transform: translate(-80%, -50%) rotate(-15deg);
+}
+
+.code_css {
+  transform: translate(70%, 0%) rotate(-15deg);
+}
+
+.code_js {
+  transform: translate(-70%, -130%) rotate(-15deg);
+}
+
+.code_react {
+  transform: translate(-85%, 0%) rotate(-15deg);
+}
+
+.code_firebase {
+  transform: translate(10%, -15%) rotate(-15deg);
+}
+
+.code_gsap {
+  transform: translate(-60%, 80%) rotate(-15deg);
 }
 
 /*#######################################-- Hobbies --#######################################*/

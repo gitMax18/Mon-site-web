@@ -1,50 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/prefixed/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <title>JEAN Maxime site</title>
   </head>
-  <body>
+  <body id="scrollBar">
     <!-- <div class="start_container">
       <h1>Bienvenue sur mon site</h1>
     </div> -->
-
     <header class="landing">
       <div class="wrapper">
         <div class="landing_container">
-          <div class="landing_left_box">
-            <div class="landing_name">
-              <div class="landing_firstName">
-                <span>J</span>
-                <span>E</span>
-                <span>A</span>
-                <span>N</span>
-              </div>
-              <div class="landing_lastName">
-                <span>M</span>
-                <span>A</span>
-                <span>X</span>
-                <span>I</span>
-                <span>M</span>
-                <span>E</span>
-              </div>
-            </div>
-            <p>Apprentie Web Developpeur...</p>
+          <div class="landing_content">
+            <h1>JEAN MAXIME</h1>
+            <p>Apprentie Web Développeur</p>
           </div>
-          <div class="landing_right_box">
-            <div class="containerCube">
-              <div class="cube">
-                <div class="face faceTop">React</div>
-                <div class="face faceBottom">HTML</div>
-                <div class="face faceLeft">CSS</div>
-                <div class="face faceRight">Javascript</div>
-                <div class="face faceFront">GSAP</div>
-                <div class="face faceBack">GIT</div>
-              </div>
-            </div>
-          </div>
+          <div class="landing_background"></div>
         </div>
       </div>
     </header>
@@ -58,7 +31,7 @@
               quos modi ducimus incidunt, suscipit similique praesentium a! Corrupti, ea excepturi! Ab, laboriosam delectus! Animi, facere porro consequuntur possimus adipisci laudantium
               voluptatibus deserunt! Consectetur, necessitatibus ut illum cumque optio, possimus quas dolor quisquam rerum expedita cupiditate accusamus ducimus officia laborum vero neque
               asperiores sapiente consequatur iusto enim vel alias vitae! Ratione nam rerum veniam soluta eum.
-            </p>
+             </p>
           </div>
         </div>
       </section>
@@ -66,8 +39,10 @@
       <section class="parcour">
         <div class="wrapper">
           <div class="parcour_container">
-            <h1>Mon parcour</h1>
+            <h1 class="parcour_title">Mon parcour</h1>
+
             <div class="parcour_content">
+
               <div class="svg1">
                 <svg class="ligne ligne1" width="7" height="435" viewBox="0 0 7 435">
                   <rect y="21" width="7" height="33.2773" fill="#00000" />
@@ -85,6 +60,7 @@
                   <!-- <circle cx="3.5" cy="3.5" r="3.5" fill="#00000" /> -->
                 </svg>
               </div>
+
               <div class="svg2">
                 <svg class="ligne ligne2" width="529" height="7" viewBox="0 0 529 7">
                   <rect x="21" y="7" width="7" height="33.2773" transform="rotate(-90 21 7)" fill="#00000" />
@@ -101,6 +77,37 @@
                   <!-- <circle class="circle2" cx="524.873" cy="3.5" r="3.5" transform="rotate(-90 524.873 3.5)" fill="#00000" />
                   <circle cx="3.5" cy="3.5" r="3.5" transform="rotate(-90 3.5 3.5)" fill="#00000" /> -->
                 </svg>
+
+                <pre class="code code_html">
+                  <code type="html">
+                    &lt;nav&gt;
+                      &lt;span class=&quot;logo-nav&quot;&gt;Logo&lt;/span&gt;
+                      &lt;ul&gt;
+                        &lt;li&gt;&lt;a href=&quot;../index.html&quot;&gt;Acceuil&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;./fonc.html&quot;&gt;Fonctionnalit&#233;s&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;./contact.html&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                      &lt;/ul&gt;
+                      &lt;a href=&quot;#&quot; class=&quot;lien-essai&quot;&gt;Essai gratuit&lt;/a&gt;
+                      &lt;button class=&quot;responsive-nav-btn&quot;&gt;
+                        &lt;img src=&quot;../ressources/menu.svg&quot; alt=&quot;icon&quot; /&gt;
+                      &lt;/button&gt;
+                    &lt;/nav&gt;
+                  </code>
+                </pre>
+
+                <pre class="code code_css">
+                  <code type="html">
+                    .landing_left_box {
+                      flex-basis: 60%;
+                      color: white;
+                      display: flex;
+                      justify-content: center;
+                      align-items: left;
+                      flex-direction: column;
+                      padding-left: 10rem;
+                    }
+                  </code>
+                </pre>
               </div>
     
               <div class="svg3">
@@ -128,6 +135,24 @@
                   <!-- <circle cx="3.5" cy="524.873" r="3.5" fill="#00000" /> -->
                   <!-- <circle cx="3.5" cy="3.5" r="3.5" fill="#00000" /> -->
                 </svg>
+
+
+                <pre class="code code_js">
+                  <code type="html">
+                    tabChoix.forEach(choix =&gt; {
+                        choix.addEventListener(&quot;click&quot;, ()=&gt;{
+                           const indexChoix = tabChoix.indexOf(choix);
+                    
+                           for(let i = 0; i &lt; tabChoix.length; i++){
+                               if(i === indexChoix){
+                                   tabChoix[i].classList.add(&quot;active-choix&quot;);
+                                   tabContenu[i].classList.add(&quot;panneau-active&quot;);
+                               } else {
+                                tabChoix[i].classList.remove(&quot;active-choix&quot;);
+                                tabContenu[i].classList.remove(&quot;panneau-active&quot;);
+                               }
+                  </code>
+                </pre>
               </div>
     
               <div class="svg4">
@@ -147,6 +172,30 @@
                   <!-- <circle cx="524.873" cy="3.5" r="3.5" transform="rotate(-90 524.873 3.5)" fill="#00000" />
                   <circle cx="3.5" cy="3.5" r="3.5" transform="rotate(-90 3.5 3.5)" fill="#00000" /> -->
                 </svg>
+
+                <pre class="code code_react">
+                  <code type="html">
+                    useEffect(() =&gt; {
+                      const dateNow = new Date();
+                      const myDate =
+                        `${dateNow.getFullYear().toString()}-` +
+                        `${dateNow.getMonth().toString().padStart(2, &quot;0&quot;)}-`
+                        `${dateNow.getDate().toString().padStart(2, &quot;0&quot;)}`;
+                      setDateNow(myDate);
+                    }, []);
+                  </code>
+                </pre>
+
+                <pre class="code code_firebase">
+                  <code type="html">
+                    export const createNewUser = (email, password) =&gt; {
+                      return new Promise((resolve, reject)=&gt;{
+                        firebase.auth().createUserWithEmailAndPassword(email, password)
+                        .then((user) =&gt; resolve(user))
+                        .catch((error) =&gt; reject(error));
+                      })
+                  </code>
+                </pre>
               </div>
     
               <div class="svg5">
@@ -165,6 +214,16 @@
                   <!-- <circle cx="3.5" cy="247.759" r="3.5" fill="#00000" /> -->
                   <!-- <circle cx="3.5" cy="3.5" r="3.5" fill="#00000" /> -->
                 </svg>
+
+                <pre class="code code_gsap">
+                  <code type="html">
+                    const tlCube = gsap.timeline({defaults : {duration : 5, ease : Expo.out}})
+                    .fromTo(&quot;.faceTop&quot;,{rotateX : &quot;90deg&quot; , transform : &quot;translateZ(100px)&quot;},
+                    .fromTo(&quot;.faceBottom&quot;,{rotateX : &quot;-90deg&quot; , z : 100}, {z : 200}, 0)
+                    .fromTo(&quot;.faceRight&quot;,{rotateY : &quot;90deg&quot; , z : 100} , {z : 200}, 0)
+                    .fromTo(&quot;.faceLeft&quot;, {rotateY : &quot;-90deg&quot; , z : 100}, {z : 200}, 0)
+                  </code>
+                </pre>
               </div>
     
               <div class="card card_1">
@@ -356,8 +415,10 @@
                       </ul>
                     </div>
                   </div>
+                </div>
               </div>
-              </div>
+              
+            </div>
           </div>
         </div>
       </section>
