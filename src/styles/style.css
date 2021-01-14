@@ -164,12 +164,18 @@ body {
   display: block;
   background: url("../../assets/imgs/pic2.jpg");
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
 }
 
 .picture2 {
   display: none;
   background: url("../../assets/imgs/pic1.jpg");
   background-position: right top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
 }
 
 .presentation_content {
