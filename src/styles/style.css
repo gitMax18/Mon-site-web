@@ -12,13 +12,21 @@
 html,
 body {
   font-size: 62.5%;
-  /* overflow-y: hidden; */
   overflow-x: hidden;
   position: relative;
   scroll-behavior: smooth;
-  height: 100%;
+  /* height: 100vh; */
   scrollbar-color: var(--color-background);
-  scrollbar-width: 0px;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+}
+
+.scroll {
+  height: 100vh;
+  width: 100%;
 }
 
 :root {
@@ -39,40 +47,17 @@ body {
   min-width: 100vw;
 }
 
-/*#######################################-- Start --#######################################*/
-
-/* .start_container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--primary-color);
-}
-
-.start_container h1 {
-  font-size: 6rem;
-  font-family: Montserrat, sans-serif;
-  color: white;
-} */
-
 /*#######################################-- Landing --#######################################*/
 
 .landing {
   height: 100vh;
   width: 100%;
-  /* position: relative; */
+  position: relative;
 }
 
 .landing_container {
   width: inherit;
   height: inherit;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   background-color: black;
   clip-path: ellipse(80vw 100vh at 50% 0vh);
 }
@@ -80,14 +65,10 @@ body {
 .landing_background {
   width: inherit;
   height: inherit;
-  background: url("../assets/imgs/background_2.png");
+  background: url("../../assets/imgs/background_2.png");
   background-size: 110%;
-  /* background-size: 120%; */
-  /* position: fixed; */
   background-repeat: no-repeat;
   background-position: -30% 60%;
-  /* backface-visibility: hidden; */
-  /* background-position: 0% 60%; */
 }
 
 .landing_content {
@@ -98,6 +79,12 @@ body {
   z-index: 100;
   background-color: transparent;
   perspective: 1000px;
+}
+
+.firstName {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .firstName span,
@@ -123,44 +110,93 @@ body {
 
 .presentation {
   width: 100%;
-  height: 100vh;
+  padding-top: 20rem;
+  position: relative;
 }
 
 .presentation_container {
-  padding: 10rem 20rem 10rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
 }
 
-.presentation h1,
-.hobbies h1 {
+.presentation_container h1 {
   font-size: 12rem;
   font-family: Caveat brush, sans-serif;
   margin: 0 auto;
-  margin-bottom: 10rem;
+  margin-bottom: 2rem;
   width: fit-content;
 }
 
-.presentation h1::after {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 100%;
-  content: "";
-  width: 60%;
-  height: 3px;
-  background-color: black;
+.presentation_box {
+  display: flex;
+  height: 80vh;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 15rem 0;
+  background-color: #02dbff;
+  position: relative;
+  right: -15%;
+  padding: 10rem;
+  border-radius: 0px 90px 0px 90px;
 }
 
-.presentation p {
+.presentation_picContainer {
+  width: 65%;
+  height: 80%;
+  background-color: black;
+  position: absolute;
+  left: -25%;
+  border-radius: 0px 90px 0px 90px;
+}
+
+.presentation_picture {
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  border-radius: 0px 90px 0px 90px;
+}
+
+.picture1 {
+  display: block;
+  background: url("../../assets/imgs/pic2.jpg");
+  background-position: center;
+}
+
+.picture2 {
+  display: none;
+  background: url("../../assets/imgs/pic1.jpg");
+  background-position: right top;
+}
+
+.presentation_content {
+  perspective: 1000px;
+  flex-basis: 50%;
+}
+
+.content1 {
+  transform-style: preserve-3d;
+  display: block;
+}
+
+.content2 {
+  display: none;
+  transform-style: preserve-3d;
+}
+
+.presentation_content h2 {
+  font-size: 9rem;
+  font-family: Caveat Brush;
+  padding-bottom: 3rem;
+}
+
+.presentation_content p {
   font-size: 2rem;
-  font-family: Montserrat, serif;
-  margin: 0 auto;
-  line-height: 5rem;
-  /* height: 100%; */
-  text-align: center;
+  line-height: 3.5rem;
+  font-family: montserrat;
 }
 
 /*#######################################-- Parcour --#######################################*/
@@ -376,6 +412,14 @@ body {
   width: 100%;
   /* perspective: 1400px; */
   position: relative;
+}
+
+.hobbies h1 {
+  font-size: 12rem;
+  font-family: Caveat brush, sans-serif;
+  margin: 0 auto;
+  margin-bottom: 10rem;
+  width: fit-content;
 }
 
 .hobbies_content {

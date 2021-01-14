@@ -3,50 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1" />
-    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/prefixed/style.css" />
     <title>JEAN Maxime site</title>
   </head>
-  <body id="scrollBar">
-    <!-- <div class="start_container">
-      <h1>Bienvenue sur mon site</h1>
-    </div> -->
-    <header class="landing">
-      <div class="wrapper">
-        <div class="landing_container">
-          <div class="landing_content">
-            <div class="firstName">
-              <span>J</span> 
-              <span>E</span> 
-              <span>A</span> 
-              <span>N</span> 
-              &nbsp;
+  <body>
+    <div class="scroll">
+      <header class="landing">
+        <div class="wrapper">
+          <div class="landing_container">
+            <div class="landing_content">
+              <div class="firstName">
+                <span>J</span>
+                <span>E</span>
+                <span>A</span>
+                <span>N</span>
+                &nbsp;
+              </div>
+              <div class="lastName">
+                <span>M</span>
+                <span>A</span>
+                <span>X</span>
+                <span>I</span>
+                <span>M</span>
+                <span>E</span>
+              </div>
+              <p>Apprentie Web Développeur</p>
             </div>
-            <div class="lastName">
-              <span>M</span> 
-              <span>A</span> 
-              <span>X</span> 
-              <span>I</span> 
-              <span>M</span> 
-              <span>E</span> 
-            </div>
-            <p>Apprentie Web Développeur</p>
-          </div>
             <div class="landing_background"></div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
       <section class="presentation">
         <div class="wrapper">
           <div class="presentation_container">
-            <h1>Présentation</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam nostrum repellendus ullam minus rerum amet asperiores et voluptates maxime doloremque nulla delectus vitae
-              quos modi ducimus incidunt, suscipit similique praesentium a! Corrupti, ea excepturi! Ab, laboriosam delectus! Animi, facere porro consequuntur possimus adipisci laudantium
-              voluptatibus deserunt! Consectetur, necessitatibus ut illum cumque optio, possimus quas dolor quisquam rerum expedita cupiditate accusamus ducimus officia laborum vero neque
-              asperiores sapiente consequatur iusto enim vel alias vitae! Ratione nam rerum veniam soluta eum.
-             </p>
+            <h1>Presentation</h1>
+            <div class="presentation_box">
+              <div class="presentation_picContainer">
+                <div class="presentation_picture picture1"></div>
+                <div class="presentation_picture picture2"></div>
+              </div>
+              <div class="presentation_content">
+                <div class="content1">
+                  <h2>Qui suis-je ?</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam nostrum repellendus ullam minus rerum amet asperiores et voluptates maxime doloremque nulla
+                    delectus vitae quos modi ducimus incidunt, suscipit similique praesentium a! Corrupti, ea excepturi! Ab, laboriosam delectus! Animi, facere porro consequuntur possimus
+                    adipisci laudantium voluptatibus deserunt! Consectetur, necessitatibus ut illum cumque optio, possimus quas dolor quisquam rerum sapiente consequatur iusto enim vel alias
+                    vitae! Ratione nam rerum veniam soluta eum.
+                  </p>
+                </div>
+                <div class="content2">
+                  <h2>Motivation ?</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aliquam nostrum repellendus ullam minus rerum amet asperiores et voluptates maxime doloremque nulla
+                    delectus vitae quos modi ducimus incidunt, suscipit similique praesentium a! Corrupti, ea excepturi! Ab, laboriosam delectus! Animi, facere porro consequuntur possimus
+                    adipisci laudantium voluptatibus deserunt! Consectetur, necessitatibus ut illum cumque optio, possimus quas dolor quisquam rerum sapiente consequatur iusto enim vel alias
+                    vitae! Ratione nam rerum veniam soluta eum.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -57,7 +74,6 @@
             <h1 class="parcour_title">Mon parcour</h1>
 
             <div class="parcour_content">
-
               <div class="svg1">
                 <svg class="ligne ligne1" width="7" height="435" viewBox="0 0 7 435">
                   <rect y="21" width="7" height="33.2773" fill="#00000" />
@@ -124,7 +140,7 @@
                   </code>
                 </pre>
               </div>
-    
+
               <div class="svg3">
                 <svg class="ligne ligne3" width="7" height="890" viewBox="0 0 7 890">
                   <rect y="21" width="7" height="33.2773" fill="#00000" />
@@ -146,11 +162,10 @@
                   <rect y="749.382" width="7" height="33.2773" fill="#00000" />
                   <rect y="794.984" width="7" height="33.2773" fill="#00000" />
                   <rect y="840.586" width="7" height="33.2773" fill="#00000" />
-    
+
                   <!-- <circle cx="3.5" cy="524.873" r="3.5" fill="#00000" /> -->
                   <!-- <circle cx="3.5" cy="3.5" r="3.5" fill="#00000" /> -->
                 </svg>
-
 
                 <pre class="code code_js">
                   <code type="html">
@@ -169,7 +184,7 @@
                   </code>
                 </pre>
               </div>
-    
+
               <div class="svg4">
                 <svg class="ligne ligne4" width="529" height="7" viewBox="0 0 529 7">
                   <rect x="21" y="7" width="7" height="33.2773" transform="rotate(-90 21 7)" fill="#00000" />
@@ -183,7 +198,7 @@
                   <rect x="384.566" y="7" width="7" height="33.2773" transform="rotate(-90 384.566 7)" fill="#00000" />
                   <rect x="430.168" y="7" width="7" height="33.2773" transform="rotate(-90 430.168 7)" fill="#00000" />
                   <rect x="475.77" y="7" width="7" height="33.2773" transform="rotate(-90 475.77 7)" fill="#00000" />
-    
+
                   <!-- <circle cx="524.873" cy="3.5" r="3.5" transform="rotate(-90 524.873 3.5)" fill="#00000" />
                   <circle cx="3.5" cy="3.5" r="3.5" transform="rotate(-90 3.5 3.5)" fill="#00000" /> -->
                 </svg>
@@ -212,7 +227,7 @@
                   </code>
                 </pre>
               </div>
-    
+
               <div class="svg5">
                 <svg class="ligne ligne5" width="7" height="245" viewBox="0 0 7 245">
                   <rect y="21" width="7" height="33.2773" fill="#00000" />
@@ -240,7 +255,7 @@
                   </code>
                 </pre>
               </div>
-    
+
               <div class="card card_1">
                 <div class="card_box card_box1">
                   <div class="card_box_front">
@@ -272,7 +287,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="card card_2">
                 <div class="card_box card_box2">
                   <div class="card_box_front">
@@ -304,7 +319,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="card card_3">
                 <div class="card_box card_box3">
                   <div class="card_box_front">
@@ -336,7 +351,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="card card_4">
                 <div class="card_box card_box4">
                   <div class="card_box_front">
@@ -368,7 +383,7 @@
                   </div>
                 </div>
               </div>
-    
+
               <div class="card card_5">
                 <div class="card_box card_box5">
                   <div class="card_box_front">
@@ -443,36 +458,33 @@
             <h1>Mes Hobbies...</h1>
 
             <div class="hobbies_content">
-
               <div class="hobbies_txt">
                 <span class="txt txt1" data-nb="impair">Jouer de la guitare</span>
                 <span class="txt txt2" data-nb="pair">Lecture...</span>
                 <span class="txt txt3" data-nb="impair">Partir en voyage</span>
                 <span class="txt txt4" data-nb="pair">Regarder des séries</span>
                 <span class="txt txt5" data-nb="impair">Soirée entre amis</span>
-                <span class="txt txt6" data-nb=pair">Sortie en mer</span>
+                <span class="txt txt6" data-nb="pair">Sortie en mer</span>
               </div>
-
 
               <div class="hobbie hobbie1">
-                <img src="./assets/imgs/guitare-min.png" alt="guitare">
+                <img src="./assets/imgs/guitare-min.png" alt="guitare" />
               </div>
               <div class="hobbie hobbie2">
-                <img src="./assets/imgs/fete-min.png" alt="fête">
+                <img src="./assets/imgs/fete-min.png" alt="fête" />
               </div>
               <div class="hobbie hobbie3">
-                <img src="./assets/imgs/lire-min.png" alt="livre">
+                <img src="./assets/imgs/lire-min.png" alt="livre" />
               </div>
               <div class="hobbie hobbie4">
-                <img src="./assets/imgs/mer-min.png" alt="mer">
+                <img src="./assets/imgs/mer-min.png" alt="mer" />
               </div>
               <div class="hobbie hobbie5">
-                <img src="./assets/imgs/repos-min.png" alt="homme qui se repose">
+                <img src="./assets/imgs/repos-min.png" alt="homme qui se repose" />
               </div>
               <div class="hobbie hobbie6">
-                <img src="./assets/imgs/voyage-min.png" alt="longue route">
+                <img src="./assets/imgs/voyage-min.png" alt="longue route" />
               </div>
-
             </div>
           </div>
         </div>
@@ -480,7 +492,6 @@
 
       <section class="contact">Contact</section>
     </div>
-
     <script src="app.js"></script>
   </body>
 </html>
