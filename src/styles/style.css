@@ -65,7 +65,7 @@ body {
 .landing_background {
   width: inherit;
   height: inherit;
-  background: url("../../assets/imgs/background_2.png");
+  background: url("../assets/imgs/background_2.png");
   background-size: 110%;
   background-repeat: no-repeat;
   background-position: -30% 60%;
@@ -162,7 +162,7 @@ body {
 
 .picture1 {
   display: block;
-  background: url("../../assets/imgs/pic2.jpg");
+  background: url("../assets/imgs/pic2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -171,7 +171,7 @@ body {
 
 .picture2 {
   display: none;
-  background: url("../../assets/imgs/pic1.jpg");
+  background: url("../assets/imgs/pic1.jpg");
   background-position: right top;
   background-repeat: no-repeat;
   background-size: cover;
