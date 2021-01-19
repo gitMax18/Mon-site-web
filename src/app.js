@@ -9,7 +9,7 @@ import Scrollbar from "smooth-scrollbar";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const scroll = document.querySelector(".scroll")
+const scroll = document.querySelector('body')
 const bodyScrollBar = Scrollbar.init(scroll)
 bodyScrollBar.track.xAxis.element.remove();
 
@@ -23,7 +23,7 @@ ScrollTrigger.scrollerProxy(document.body,{
 })
 
 bodyScrollBar.addListener(ScrollTrigger.update)
-ScrollTrigger.defaults({scroller : document.body})
+// ScrollTrigger.defaults({scroller : scroll})
 
 
 
@@ -67,23 +67,37 @@ gsap.timeline({scrollTrigger :{
             trigger : ".presentation h1",
             start : "top-=10% bottom",
             end : "center center",
-            scrub : true,
+            scrub : 0.5,
             pinType : "transform"
         }
     })
 
     gsap.timeline({scrollTrigger : {
         trigger : ".presentation_box",
-        scrub : true,
+        scrub : 0.5,
         start : "top +=10% bottom",
         pin : true,
         pinType : "transform"
     }, defaults : {duration : 0.3}, duration : 10})
-    .to(".presentation_box", {backgroundColor : "#fea001", duration : 6},2.5)
+    // .to(".presentation_box", {backgroundColor : "#fea001", duration : 6},2.5)
     .to(".picture1",{keyframes : [{opacity : 0, duration : 3}, {display : "none"}]},2)
     .to(".picture2",{keyframes : [{opacity : 0}, {display : "block"}, {opacity : 1, duration : 3}]},5)
     .to(".content1", {rotateY : 90, duration : 3, opacity : 0, display : "none"},3.5)
     .fromTo(".content2", {display : "none", rotateY : -90, autoAlpha : 0}, {display : "block" ,rotateY : 0, duration : 3, autoAlpha : 1},6.5)
+
+
+// #######################################-- Learn  --#######################################
+
+gsap.timeline({scrollTrigger : {trigger : ".learn_title", start :"top+=30% bottom"}})
+.from(".hideTxt", {y : 200, duration : 2,stagger : 0.5, onComplete : ()=> tlLearnContent.play(0)})
+
+const tlLearnContent = gsap.timeline({paused : true})
+.from(".learn_box",{y : 200, autoAlpha : 0, stagger : 1.5, ease : "back.out(2)", duration : 0.5})
+.from(".learn_box_title svg circle", {strokeDashoffset : 288.56, duration : 2, stagger : 1.5},0.2)
+.from(".polygon", {autoAlpha : 0, duration : 1, stagger : 1.5}, 2)
+.to(".learn_box p", {color : "whitesmoke", opacity : 1, duration : 1, stagger : 1.5}, 2)
+.to(".polygon", {x : 5, duration : 1, repeat : -1, yoyo : true})
+
 
 
 // #######################################-- Parcour --#######################################
@@ -104,7 +118,7 @@ gsap.timeline({scrollTrigger :{
             start : "top bottom",
             end : "center center",
             // markers : true,
-            scrub : true,
+            scrub : 0.5,
         }
     })
    
@@ -120,7 +134,7 @@ gsap.timeline({scrollTrigger :{
             end : "bottom bottom+=40%",
         },
     })
-        .from(".ligne1 rect", {scale : 0, stagger : 0.5,
+    .from(".ligne1 rect", {scale : 0, stagger : 0.5,
      onComplete : ()=> gsapLigne2.play()
     })
     .from(".ligne3 rect", {scale : 0, stagger : 0.5,
@@ -282,7 +296,7 @@ gsap.timeline({scrollTrigger :{
         onReverseComplete : ()=> code6.reverse(),
         scrollTrigger : {
             trigger : ".card_6",
-            scrub : true,
+            scrub : 0.5,
             start : "top bottom-=10%",
             end : "center center+=35%",
         }
@@ -304,19 +318,24 @@ gsap.timeline({scrollTrigger :{
         return {x : ligne_X, y : ligne_Y , w : box_W, h : box_H, lH : ligne_H}
     }
 
-    const dataBox1  = getBoxPosition(".svg2", ".card_1")
-    const dataBox2  = getBoxPosition(".svg2", ".card_2")
-    const dataBox3  = getBoxPosition(".svg3", ".card_3")
-    const dataBox4  = getBoxPosition(".svg4", ".card_4")
-    const dataBox5  = getBoxPosition(".svg4", ".card_5")
-    const dataBox6  = getBoxPosition(".svg5", ".card_6")
+    function setBoxPosition(){
+        const dataBox1  = getBoxPosition(".svg2", ".card_1")
+        const dataBox2  = getBoxPosition(".svg2", ".card_2")
+        const dataBox3  = getBoxPosition(".svg3", ".card_3")
+        const dataBox4  = getBoxPosition(".svg4", ".card_4")
+        const dataBox5  = getBoxPosition(".svg4", ".card_5")
+        const dataBox6  = getBoxPosition(".svg5", ".card_6")
+    
+        gsap.set(".card_1", {left : dataBox1.x - dataBox1.w, top : dataBox1.y - (dataBox1.h / 2)})
+        gsap.set(".card_2", {right : dataBox2.x - dataBox2.w, top : dataBox2.y - (dataBox2.h / 2)})
+        gsap.set(".card_3", {left : (dataBox3.x - (dataBox3.w / 2) + 3.5), top :(dataBox3.y + (dataBox3.lH / 2) - (dataBox3.h / 2) )})
+        gsap.set(".card_4", {left : dataBox4.x - dataBox4.w, top : dataBox4.y - (dataBox4.h / 2)})
+        gsap.set(".card_5", {right : dataBox5.x - dataBox5.w, top : dataBox5.y - (dataBox5.h / 2)})
+        gsap.set(".card_6", {left : (dataBox6.x - (dataBox6.w / 2) + 3.5), top : dataBox6.y + dataBox6.lH})
+    }
 
-    gsap.set(".card_1", {left : dataBox1.x - dataBox1.w, top : dataBox1.y - (dataBox1.h / 2)})
-    gsap.set(".card_2", {right : dataBox2.x - dataBox2.w, top : dataBox2.y - (dataBox2.h / 2)})
-    gsap.set(".card_3", {left : (dataBox3.x - (dataBox3.w / 2) + 3.5), top :(dataBox3.y + (dataBox3.lH / 2) - (dataBox3.h / 2) )})
-    gsap.set(".card_4", {left : dataBox4.x - dataBox4.w, top : dataBox4.y - (dataBox4.h / 2)})
-    gsap.set(".card_5", {right : dataBox5.x - dataBox5.w, top : dataBox5.y - (dataBox5.h / 2)})
-    gsap.set(".card_6", {left : (dataBox6.x - (dataBox6.w / 2) + 3.5), top : dataBox6.y + dataBox6.lH})
+    setBoxPosition();
+    window.onresize = setBoxPosition
 
 
     // Animate rotation on click for the card
@@ -396,7 +415,7 @@ const setTxt = gsap.timeline({paused : true, defaults : {ease : "none", duration
 
 const setImgs = gsap.timeline({scrollTrigger : {
     trigger : ".hobbies_content",
-    scrub : true,
+    scrub : 0.5,
     start : "top-=30% center",
     end : "bottom-=10% center",
     // markers : true,
@@ -411,3 +430,63 @@ const setImgs = gsap.timeline({scrollTrigger : {
 .fromTo(".hobbie6", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50, scale : 0.5},{yPercent : -50 , xPercent : -50, scale : 1.2}, 0)
 
 
+// #######################################-- Contact --#######################################
+
+
+const contactBox = document.querySelectorAll(".contact_box_title h3");
+const contactContent = document.querySelectorAll(".contact_box_content");
+
+contactContent.forEach(content => {
+    content.style.height = "0px"
+})
+
+const animBox = function(){
+    contactBox.forEach((box, index)=> {
+        if(box.classList.contains("title_inactivate")){
+            box.addEventListener("mouseenter", ()=> {
+                gsap.to(`.title_triangle${index + 1}`,{scaleX : 4, transformOrigin : "top"})
+            })
+            box.addEventListener("mouseleave", ()=> {
+                gsap.to(`.title_triangle${index + 1}`,{scaleX : 1, transformOrigin : "top"})
+            })
+        }
+    })
+
+    contactBox.forEach((box, index) => {
+        box.addEventListener("click", ()=>{
+            const height = contactContent[index].style.height
+            if(height === "0px"){
+                contactBox[index].classList.replace("title_inactivate","title_active")
+                contactContent[index].style.height = contactContent[index].scrollHeight + "px"
+                gsap.to(`.title_triangle${index + 1}`,{scale : 0, duration : 0.2})
+                gsap.to(`.title_stroke${index + 1}`,{scale : 0.5, transformOrigin : "left", x : "-5rem"})
+            } else {
+                contactBox[index].classList.replace("title_active","title_inactivate",)
+                contactContent[index].style.height = "0px";
+                gsap.to(`.title_triangle${index + 1}`,{scale : 1})
+                gsap.to(`.title_stroke${index + 1}`,{scale : 1, x : 0})
+                contactBox[index].classList.remove("active")
+    
+            }
+            for(let i = 0 ; i < contactContent.length; i++){
+                if(contactContent[i].style.height != 0 && i != index){
+                    contactBox[i].classList.replace("title_active","title_inactivate",)
+                    contactContent[i].style.height = "0px"
+                    gsap.to(`.title_triangle${i + 1}`,{scale : 1})
+                    gsap.to(`.title_stroke${i + 1}`,{scale : 1, x : 0})
+                }
+            }
+        })
+    })
+}
+
+    gsap.timeline({scrollTrigger : {trigger : ".contact_title"},onComplete : animBox})
+    .from(".contact_hide_txt", {y : 200, duration : 2,stagger : 0.5})
+    .from(".contact_box",{y : 200, autoAlpha : 0,stagger : 0.5, duration : 1})
+    .from(".title_triangle", {scale : 0, duration : 0.5})
+    .from(".title_stroke", {scale : 0, duration : 0.8}, "-=0.5")
+
+
+
+
+    // #######################################-- contact2 --#######################################
