@@ -1,0 +1,563 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap");
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  /* overflow-y: hidden; */
+  overflow-x: hidden;
+}
+
+.body {
+  overflow: hidden;
+}
+
+:root {
+  --primary-color: #151515;
+  --secondary-color: #7c90a0;
+  --strong-color: #a8201a;
+}
+
+.wrapper {
+  max-width: 1900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/*#######################################-- Start --#######################################*/
+
+.start_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: var(--primary-color);
+}
+
+.start_container h1 {
+  font-size: 6rem;
+  font-family: Montserrat, sans-serif;
+  color: white;
+}
+
+/*#######################################-- Landing --#######################################*/
+
+.landing {
+  background: var(--primary-color);
+  width: 100%;
+  height: 100vh;
+}
+
+.landing_container {
+  height: 100vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.landing_left_box {
+  -ms-flex-preferred-size: 60%;
+      flex-basis: 60%;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: left;
+      -ms-flex-align: left;
+          align-items: left;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-left: 10rem;
+}
+
+.landing_firstName {
+  margin-bottom: -30px;
+}
+
+.landing_left_box span {
+  font-size: 15rem;
+  font-family: Caveat Brush, sans-serif;
+  display: inline-block;
+  padding-right: 1rem;
+}
+
+.landing_left_box p {
+  font-size: 4rem;
+  font-family: Montserrat;
+  letter-spacing: 0.5rem;
+  color: #fee140;
+}
+
+.landing_right_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
+}
+
+/* Effet Cube */
+
+.containerCube {
+  width: 200px;
+  height: 200px;
+  /* perspective: 1000px; */
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  position: relative;
+  -webkit-animation: spin 15s infinite linear;
+          animation: spin 15s infinite linear;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 4rem;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fa709a), to(#fee140));
+  background: -o-linear-gradient(#fa709a, #fee140);
+  background: linear-gradient(#fa709a, #fee140);
+  font-family: Caveat brush, sans-serif;
+}
+
+.faceTop {
+  /* transform: rotateX(90deg) translateZ(100px); */
+  /* animation: explosionTop 15s ease-out infinite; */
+}
+
+.faceBottom {
+  /* transform: rotateX(-90deg) translateZ(100px); */
+  /* animation: explosionBottom 15s ease-out infinite; */
+}
+.faceLeft {
+  /* transform: rotateY(-90deg) translateZ(100px); */
+  /* animation: explosionLeft 15s ease-out infinite; */
+}
+.faceRight {
+  /* transform: rotateY(90deg) translateZ(100px); */
+  /* animation: explosionRight 15s ease-out infinite; */
+}
+.faceBack {
+  /* transform: rotateX(-180deg) translateZ(100px); */
+  /* animation: explosionBack 15s ease-out infinite; */
+}
+.faceFront {
+  /* transform: rotateX(0deg) translateZ(100px); */
+  /* animation: explosionFront 15s ease-out infinite; */
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+            transform: rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    -webkit-transform: rotateX(360deg) rotateY(360deg);
+            transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+            transform: rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    -webkit-transform: rotateX(360deg) rotateY(360deg);
+            transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+/*#######################################-- Presentation --#######################################*/
+
+.presentation {
+  width: 100%;
+}
+
+.presentation_container {
+  padding: 10rem 20rem 10rem;
+}
+
+.presentation h1,
+.parcour h1,
+.hobbies h1 {
+  font-size: 12rem;
+  font-family: Caveat brush, sans-serif;
+  margin: 0 auto;
+  margin-bottom: 10rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.presentation h1::after {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 100%;
+  content: "";
+  width: 60%;
+  height: 3px;
+  background-color: black;
+}
+
+.presentation p {
+  font-size: 2rem;
+  font-family: Montserrat, serif;
+  margin: 0 auto;
+  line-height: 5rem;
+  height: 100%;
+  text-align: center;
+}
+
+/*#######################################-- Parcour --#######################################*/
+
+.parcour {
+  position: relative;
+  width: 100%;
+}
+
+.parcour_container {
+  padding: 0 10rem 70rem;
+  position: relative;
+}
+
+.parcour_content {
+  width: 80%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+
+.card {
+  width: 35rem;
+  height: 45rem;
+  -webkit-perspective: 800px;
+          perspective: 800px;
+  position: absolute;
+  /* position définit en JS */
+  z-index: 1000;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.card_box {
+  width: inherit;
+  height: inherit;
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  z-index: 1000;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.card_box_front {
+  width: inherit;
+  height: inherit;
+}
+
+.card_box_back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border-radius: 10px;
+}
+
+.card_box_back h2 {
+  height: 30%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 3rem;
+  background: white;
+  border-radius: 10px 10px 0 0;
+}
+
+.card_box_back_infos {
+  padding: 4rem;
+}
+
+.card_box_back ul li {
+  font-size: 2rem;
+}
+
+.card_img {
+  width: 100%;
+  height: 40%;
+}
+
+.card_img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.card_graphique {
+  height: 60%;
+  width: 100%;
+  position: relative;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+}
+
+.card_graphique svg {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
+}
+
+.card_graphique svg circle {
+  fill: transparent;
+  stroke-width: 2rem;
+  -webkit-transform: translate(1rem, 1rem);
+      -ms-transform: translate(1rem, 1rem);
+          transform: translate(1rem, 1rem);
+  stroke-dasharray: 691;
+  stroke-linecap: round;
+}
+
+.card_graphique svg g circle:nth-child(1) {
+  stroke: rgb(236, 234, 234);
+  stroke-dashoffset: 0;
+}
+
+.card_graphique1 svg g circle:nth-child(2) {
+  stroke: #22a900;
+  stroke-dashoffset: 69;
+}
+
+.card_graphique2 svg g circle:nth-child(2) {
+  stroke: #66b400;
+  stroke-dashoffset: 104;
+}
+.card_graphique3 svg g circle:nth-child(2) {
+  stroke: #95bd63;
+  stroke-dashoffset: 276;
+}
+.card_graphique4 svg g circle:nth-child(2) {
+  stroke: #95bd5c;
+  stroke-dashoffset: 242;
+}
+.card_graphique5 svg g circle:nth-child(2) {
+  stroke: #f0af09;
+  stroke-dashoffset: 345;
+}
+.card_graphique6 svg g circle:nth-child(2) {
+  stroke: #f2164b;
+  stroke-dashoffset: 484;
+}
+
+.card_graphique span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 9rem;
+  font-family: Caveat Brush, serif;
+}
+
+/*#######################################-- Hobbies --#######################################*/
+
+.hobbies {
+  width: 100%;
+  position: relative;
+}
+
+/* .txt {
+  opacity: 0;
+} */
+
+.hobbies_container {
+  height: 1300px;
+  width: 100%;
+  /* perspective: 1400px; */
+  position: relative;
+}
+
+.hobbies_content {
+  padding: 0 20rem;
+  position: relative;
+  height: 800px;
+  width: 70%;
+  margin: 0 auto;
+  /* transform-style: preserve-3d; */
+  /* background-color: aqua; */
+}
+
+.hobbie {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+  /* transform-style: preserve-3d; */
+  -webkit-box-shadow: 2px 5px 12px rgba(0, 0, 0, 1);
+          box-shadow: 2px 5px 12px rgba(0, 0, 0, 1);
+}
+
+.hobbies_txt {
+  width: 100%;
+  height: 120%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.hobbies_txt span {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  font-size: 10rem;
+  color: lightgray;
+  font-family: Caveat Brush, sans-serif;
+}
+
+/* guitare */
+.hobbie1 {
+  width: 35rem;
+  height: 20rem;
+  /* top: 15%;
+  left: 20%; */
+}
+/* fete */
+.hobbie2 {
+  width: 20rem;
+  height: 35rem;
+  /* top: 60%;
+  left: 20%; */
+}
+/* lire */
+.hobbie3 {
+  width: 20rem;
+  height: 30rem;
+  /* top: 20%;
+  left: 80%; */
+}
+/* mer */
+.hobbie4 {
+  width: 35rem;
+  height: 25rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+  /* top: 65%;
+  left: 83%; */
+}
+/* repos */
+.hobbie5 {
+  width: 40rem;
+  height: 20rem;
+  top: 100%;
+  left: 50%;
+}
+
+/* voyage */
+.hobbie6 {
+  width: 20rem;
+  height: 35rem;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+}
+
+.hobbie img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/*#######################################-- Contact --#######################################*/
+
+.contact {
+  height: 500px;
+  background-color: red;
+}
+
+
+
+/*# sourceMappingURL=/style.8724fa35.css.map */
