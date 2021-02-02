@@ -9,8 +9,7 @@ import Scrollbar from "smooth-scrollbar";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const scroll = document.querySelector('body')
-const bodyScrollBar = Scrollbar.init(scroll)
+const bodyScrollBar = Scrollbar.init(document.body)
 bodyScrollBar.track.xAxis.element.remove();
 
 ScrollTrigger.scrollerProxy(document.body,{
@@ -23,16 +22,19 @@ ScrollTrigger.scrollerProxy(document.body,{
 })
 
 bodyScrollBar.addListener(ScrollTrigger.update)
-// ScrollTrigger.defaults({scroller : scroll})
-
 
 
 // #######################################-- Start --#######################################
 
+gsap.set("body",{autoAlpha : 0})
+
+
 window.onload = () => {
 //set the start name word
+gsap.to("body", {autoAlpha : 1})
+
 gsap.timeline({defaults : {duration : 0.5, stagger : 0.2,}})
-.from(".firstName", {height : 0, duration : 3},0)
+.fromTo(".firstName", {height : 0, duration : 3},{height : "auto",duration : 3},0)
 .from(".firstName span", {y : -100},0)
 .from(".lastName span", {duration : 1,opacity : 0, rotateX : -90 , transformOrigin : "bottom", ease : Expo.Out},0.3)
 .from(".landing_content p", {autoAlpha : 0, scale : 0, ease : Back.easeOut, transformOrigin : "left", duration : 0.8})
@@ -59,6 +61,8 @@ gsap.timeline({scrollTrigger :{
 
 // #######################################-- Presentation --#######################################
 
+
+if(window.matchMedia("(min-width : 1050px)").matches){
     gsap.from(".presentation h1", {
         scale : 1.5,
         y : 200,
@@ -71,6 +75,20 @@ gsap.timeline({scrollTrigger :{
             pinType : "transform"
         }
     })
+} else {
+    gsap.from(".presentation h1", {
+        scale : 1.5,
+        y : 50,
+        ease : Expo.out,
+        scrollTrigger : {
+            trigger : ".presentation h1",
+            start : "top-=10% bottom",
+            end : "center center",
+            scrub : 0.5,
+            pinType : "transform"
+        }
+    })
+}
 
     gsap.timeline({scrollTrigger : {
         trigger : ".presentation_box",
@@ -79,7 +97,6 @@ gsap.timeline({scrollTrigger :{
         pin : true,
         pinType : "transform"
     }, defaults : {duration : 0.3}, duration : 10})
-    // .to(".presentation_box", {backgroundColor : "#fea001", duration : 6},2.5)
     .to(".picture1",{keyframes : [{opacity : 0, duration : 3}, {display : "none"}]},2)
     .to(".picture2",{keyframes : [{opacity : 0}, {display : "block"}, {opacity : 1, duration : 3}]},5)
     .to(".content1", {rotateY : 90, duration : 3, opacity : 0, display : "none"},3.5)
@@ -102,6 +119,7 @@ const tlLearnContent = gsap.timeline({paused : true})
 
 // #######################################-- Parcour --#######################################
 
+
     //rotation for set the back card in the back
     gsap.set(".card_box_back", {rotateY : "180deg"})
 
@@ -117,7 +135,6 @@ const tlLearnContent = gsap.timeline({paused : true})
             trigger : ".parcour h1",
             start : "top bottom",
             end : "center center",
-            // markers : true,
             scrub : 0.5,
         }
     })
@@ -125,11 +142,10 @@ const tlLearnContent = gsap.timeline({paused : true})
 
     // Animation for the stroke
 
-    const tlParcourLigne = gsap.timeline({
+    gsap.timeline({
         scrollTrigger : {
             trigger : ".parcour",
             scrub : 0.5,
-            // markers : true,
             start : "top+=20% bottom",
             end : "bottom bottom+=40%",
         },
@@ -201,33 +217,72 @@ const tlLearnContent = gsap.timeline({paused : true})
 
     // Animation for the graphique 
 
+
+function manageCircleLength (){
+    const svgCircles = document.querySelectorAll(".card_graphique svg g circle")
+    const svgCircles2 = document.querySelectorAll(".card_graphique svg g circle:nth-child(2)")
+
+    const circleDasharray = svgCircles[0].getTotalLength()
+    const circleDashoffset1 = circleDasharray - (circleDasharray * 0.9);
+    const circleDashoffset2 = circleDasharray - (circleDasharray * 0.85);
+    const circleDashoffset3 = circleDasharray - (circleDasharray * 0.6);
+    const circleDashoffset4 = circleDasharray - (circleDasharray * 0.65);
+    const circleDashoffset5 = circleDasharray - (circleDasharray * 0.5);
+    const circleDashoffset6 = circleDasharray - (circleDasharray * 0.3);
+
+    const tabDashoffset = [circleDashoffset1, circleDashoffset2, circleDashoffset3, circleDashoffset4, circleDashoffset5,circleDashoffset6]
+
+    svgCircles.forEach(circle => {
+        circle.style.strokeDasharray = circleDasharray;
+    })
+
+    for(let i = 0; i < svgCircles2.length; i++){
+        svgCircles2[i].style.strokeDashoffset = tabDashoffset[i]
+    }
+
+    return circleDasharray
+}
+
+    manageCircleLength();
+
+    window.addEventListener("resize" , ()=> {
+      manageCircleLength();
+      graph1.kill()
+      graph2.kill()
+      graph3.kill()
+      graph4.kill()
+      graph5.kill()
+      graph6.kill()
+    })
+
+
     const graph1 = gsap.timeline({paused : true,})
-    .from(".circleBox1", {strokeDashoffset : 691, duration : 3})
+    .from(".circleBox1", {strokeDashoffset : (index,target)=> target.getTotalLength(), duration : 3})
     .from(".card_graphique1 span", {autoAlpha : 0, scale : 0, duration : 1, ease : Back.easeOut}, 1)
 
 
     const graph2 = gsap.timeline({paused : true})
-    .from(".circleBox2", {strokeDashoffset : 691, duration : 3})
+    .from(".circleBox2", {strokeDashoffset : (index,target)=> target.getTotalLength(), duration : 3})
     .from(".card_graphique2 span", {autoAlpha : 0, scale : 0, duration : 1, ease : Back.easeOut}, 1)
 
 
     const graph3 = gsap.timeline({paused : true})
-    .from(".circleBox3", {strokeDashoffset : 691, duration : 3})
+    .from(".circleBox3", {strokeDashoffset : (index,target)=> target.getTotalLength(), duration : 3})
     .from(".card_graphique3 span", {autoAlpha : 0, scale : 0, duration : 1, ease : Back.easeOut}, 1)
 
 
     const graph4 = gsap.timeline({paused : true})
-    .from(".circleBox4", {strokeDashoffset : 691, duration : 3})
+    .from(".circleBox4", {strokeDashoffset : (index,target)=> target.getTotalLength(), duration : 3})
     .from(".card_graphique4 span", {autoAlpha : 0, scale : 0, duration : 1, ease : Back.easeOut}, 1)
 
 
     const graph5 = gsap.timeline({paused : true})
-    .from(".circleBox5", {strokeDashoffset : 691, duration : 3})
+    .from(".circleBox5", {strokeDashoffset : (index,target)=> target.getTotalLength(), duration : 3})
     .from(".card_graphique5 span", {autoAlpha : 0, scale : 0, duration : 1, ease : Back.easeOut}, 1)
 
 
     const graph6 = gsap.timeline({paused : true})
-    .from(".circleBox6", {strokeDashoffset : 691, duration : 3})
+    .from(".circleBox6", {strokeDashoffset : (index,target)=> target.getTotalLength(), duration : 3})
     .from(".card_graphique6 span", {autoAlpha : 0, scale : 0, duration : 1, ease : Back.easeOut}, 1)
 
     //Animation for the Card
@@ -275,7 +330,7 @@ const tlLearnContent = gsap.timeline({paused : true})
         onReverseComplete : ()=> code5.reverse()
     })
     
-    const gsapCard3 = gsap.from(".card_3", {
+    gsap.from(".card_3", {
         scale : 0, 
         onStart : ()=> graph3.play(),
         onComplete : ()=> code3.play(),
@@ -287,7 +342,7 @@ const tlLearnContent = gsap.timeline({paused : true})
         }
     })
 
-    const gsapCard6 = gsap.from(".card_6", {
+    gsap.from(".card_6", {
         y : 200,
         autoAlpha : 0,
         duration : 1.5,
@@ -325,13 +380,30 @@ const tlLearnContent = gsap.timeline({paused : true})
         const dataBox4  = getBoxPosition(".svg4", ".card_4")
         const dataBox5  = getBoxPosition(".svg4", ".card_5")
         const dataBox6  = getBoxPosition(".svg5", ".card_6")
-    
-        gsap.set(".card_1", {left : dataBox1.x - dataBox1.w, top : dataBox1.y - (dataBox1.h / 2)})
-        gsap.set(".card_2", {right : dataBox2.x - dataBox2.w, top : dataBox2.y - (dataBox2.h / 2)})
-        gsap.set(".card_3", {left : (dataBox3.x - (dataBox3.w / 2) + 3.5), top :(dataBox3.y + (dataBox3.lH / 2) - (dataBox3.h / 2) )})
-        gsap.set(".card_4", {left : dataBox4.x - dataBox4.w, top : dataBox4.y - (dataBox4.h / 2)})
-        gsap.set(".card_5", {right : dataBox5.x - dataBox5.w, top : dataBox5.y - (dataBox5.h / 2)})
-        gsap.set(".card_6", {left : (dataBox6.x - (dataBox6.w / 2) + 3.5), top : dataBox6.y + dataBox6.lH})
+        if(window.matchMedia("(max-width : 380px)").matches){
+            console.log("hello");
+            gsap.set(".card_1", {left : dataBox1.x - (dataBox1.w /3), top : dataBox1.y - (dataBox1.h / 2)})
+            gsap.set(".card_2", {right : dataBox2.x - dataBox2.w /3, top : dataBox2.y - (dataBox2.h / 2)})
+            gsap.set(".card_3", {left : (dataBox3.x - (dataBox3.w / 2) + 3.5), top :(dataBox3.y + (dataBox3.lH / 2) - (dataBox3.h / 2) )})
+            gsap.set(".card_4", {left : dataBox4.x - dataBox4.w /3, top : dataBox4.y - (dataBox4.h / 2)})
+            gsap.set(".card_5", {right : dataBox5.x - dataBox5.w /3, top : dataBox5.y - (dataBox5.h / 2)})
+            gsap.set(".card_6", {left : (dataBox6.x - (dataBox6.w / 2) + 3.5), top : dataBox6.y + dataBox6.lH})
+        } else if(window.matchMedia("(max-width : 600px)").matches){
+            console.log("salut");
+            gsap.set(".card_1", {left : dataBox1.x - (dataBox1.w /2), top : dataBox1.y - (dataBox1.h / 2)})
+            gsap.set(".card_2", {right : dataBox2.x - dataBox2.w /2, top : dataBox2.y - (dataBox2.h / 2)})
+            gsap.set(".card_3", {left : (dataBox3.x - (dataBox3.w / 2) + 3.5), top :(dataBox3.y + (dataBox3.lH / 2) - (dataBox3.h / 2) )})
+            gsap.set(".card_4", {left : dataBox4.x - dataBox4.w /2, top : dataBox4.y - (dataBox4.h / 2)})
+            gsap.set(".card_5", {right : dataBox5.x - dataBox5.w /2, top : dataBox5.y - (dataBox5.h / 2)})
+            gsap.set(".card_6", {left : (dataBox6.x - (dataBox6.w / 2) + 3.5), top : dataBox6.y + dataBox6.lH})
+        } else {
+            gsap.set(".card_1", {left : dataBox1.x - dataBox1.w, top : dataBox1.y - (dataBox1.h / 2)})
+            gsap.set(".card_2", {right : dataBox2.x - dataBox2.w, top : dataBox2.y - (dataBox2.h / 2)})
+            gsap.set(".card_3", {left : (dataBox3.x - (dataBox3.w / 2) + 3.5), top :(dataBox3.y + (dataBox3.lH / 2) - (dataBox3.h / 2) )})
+            gsap.set(".card_4", {left : dataBox4.x - dataBox4.w, top : dataBox4.y - (dataBox4.h / 2)})
+            gsap.set(".card_5", {right : dataBox5.x - dataBox5.w, top : dataBox5.y - (dataBox5.h / 2)})
+            gsap.set(".card_6", {left : (dataBox6.x - (dataBox6.w / 2) + 3.5), top : dataBox6.y + dataBox6.lH})
+        }
     }
 
     setBoxPosition();
@@ -356,78 +428,78 @@ const tlLearnContent = gsap.timeline({paused : true})
     
 // #######################################-- Hobbies --#######################################
 
-// set the pic in the center
+// // set the pic in the center
 
-    gsap.set(".hobbie", {yPercent : -50, xPercent : -50})
+//     gsap.set(".hobbie", {yPercent : -50, xPercent : -50})
 
-// Title Animation
+// // Title Animation
 
-gsap.from(".hobbies_container h1", {
-    transform : "scale(0.2)",
-    y : 200,
-    ease : "expo.out",
-    scrollTrigger : {
-        trigger : ".hobbies_container",
-        start : "top bottom",
-        end : "bottom center",
-        scrub : true,
-        // markers : true,
-    }
-})
-
-
-// Txt Animation
-
-function toggleZindex (element){
-    const index = gsap.getProperty(element , "zIndex")
-     if(index === 0){
-         gsap.set(element, {zIndex : 100})
-     }else {
-         gsap.set(element, {zIndex : 0})
-     }
-}
+// gsap.from(".hobbies_container h1", {
+//     transform : "scale(0.2)",
+//     y : 200,
+//     ease : "expo.out",
+//     scrollTrigger : {
+//         trigger : ".hobbies_container",
+//         start : "top bottom",
+//         end : "bottom center",
+//         scrub : true,
+//         // markers : true,
+//     }
+// })
 
 
-gsap.set(".txt", {autoAlpha : 0})
+// // Txt Animation
 
-const setTxt = gsap.timeline({paused : true, defaults : {ease : "none", duration : 10, onRepeat :toggleZindex, repeat : -1}})
-.fromTo(".txt1", {xPercent : -100, zIndex : 0, autoAlpha : 0},{autoAlpha :0, xPercent : 130,onRepeatParams: [".txt1"]},5)
-.to(".txt1" , {autoAlpha : 1, duration : 5 ,yoyo : true},5) //warning console
-
-.fromTo(".txt2", {xPercent : 130, zIndex : 100},{xPercent : -100, onRepeatParams : [".txt2"]},3) 
-.to(".txt2" , {autoAlpha : 1, duration : 5 ,yoyo : true},3)//warning console
-
-.fromTo(".txt3", {xPercent : -100, zIndex : 0},{xPercent : 130, onRepeatParams : [".txt3"]},0) 
-.to(".txt3" , {autoAlpha : 1, duration : 5 ,yoyo : true},0) //warning console
-
-.fromTo(".txt4", {xPercent : 130, zIndex : 100},{xPercent : -100, onRepeatParams : [".txt4"]},4) 
-.to(".txt4" , {autoAlpha : 1, duration : 5 ,yoyo : true},4) //warning console
-
-.fromTo(".txt5", {xPercent : -100, zIndex :0},{xPercent : 130, onRepeatParams : [".txt5"]},6) 
-.to(".txt5" , {autoAlpha : 1, duration : 5 ,yoyo : true},6) //warning console
-
-.fromTo(".txt6", {xPercent : 130, zIndex : 100},{xPercent : -100, onRepeatParams : [".txt6"]},10) 
-.to(".txt6" , {autoAlpha : 1, duration : 5 ,yoyo : true},10) //warning console
+// function toggleZindex (element){
+//     const index = gsap.getProperty(element , "zIndex")
+//      if(index === 0){
+//          gsap.set(element, {zIndex : 100})
+//      }else {
+//          gsap.set(element, {zIndex : 0})
+//      }
+// }
 
 
+// gsap.set(".txt", {autoAlpha : 0})
 
-// Pictures animation
+// const setTxt = gsap.timeline({paused : true, defaults : {ease : "none", duration : 10, onRepeat :toggleZindex, repeat : -1}})
+// .fromTo(".txt1", {xPercent : -100, zIndex : 0, autoAlpha : 0},{autoAlpha :0, xPercent : 130,onRepeatParams: [".txt1"]},5)
+// .to(".txt1" , {autoAlpha : 1, duration : 5 ,yoyo : true},5) //warning console
 
-const setImgs = gsap.timeline({scrollTrigger : {
-    trigger : ".hobbies_content",
-    scrub : 0.5,
-    start : "top-=30% center",
-    end : "bottom-=10% center",
-    // markers : true,
-}, defaults : {ease : Expo.Out, duration : 2},
-    onStart : ()=> setTxt.play(),
-},)
-.fromTo(".hobbie1", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "15%", left : "20%"}, 0)
-.fromTo(".hobbie2", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "60%", left : "20%"}, 0)
-.fromTo(".hobbie3", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "20%", left : "80%"}, 0)
-.fromTo(".hobbie4", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "65%", left : "83%"}, 0)
-.fromTo(".hobbie5", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "100%", left : "50%"}, 0)
-.fromTo(".hobbie6", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50, scale : 0.5},{yPercent : -50 , xPercent : -50, scale : 1.2}, 0)
+// .fromTo(".txt2", {xPercent : 130, zIndex : 100},{xPercent : -100, onRepeatParams : [".txt2"]},3) 
+// .to(".txt2" , {autoAlpha : 1, duration : 5 ,yoyo : true},3)//warning console
+
+// .fromTo(".txt3", {xPercent : -100, zIndex : 0},{xPercent : 130, onRepeatParams : [".txt3"]},0) 
+// .to(".txt3" , {autoAlpha : 1, duration : 5 ,yoyo : true},0) //warning console
+
+// .fromTo(".txt4", {xPercent : 130, zIndex : 100},{xPercent : -100, onRepeatParams : [".txt4"]},4) 
+// .to(".txt4" , {autoAlpha : 1, duration : 5 ,yoyo : true},4) //warning console
+
+// .fromTo(".txt5", {xPercent : -100, zIndex :0},{xPercent : 130, onRepeatParams : [".txt5"]},6) 
+// .to(".txt5" , {autoAlpha : 1, duration : 5 ,yoyo : true},6) //warning console
+
+// .fromTo(".txt6", {xPercent : 130, zIndex : 100},{xPercent : -100, onRepeatParams : [".txt6"]},10) 
+// .to(".txt6" , {autoAlpha : 1, duration : 5 ,yoyo : true},10) //warning console
+
+
+
+// // Pictures animation
+
+// const setImgs = gsap.timeline({scrollTrigger : {
+//     trigger : ".hobbies_content",
+//     scrub : 0.5,
+//     start : "top-=30% center",
+//     end : "bottom-=10% center",
+//     // markers : true,
+// }, defaults : {ease : Expo.Out, duration : 2},
+//     onStart : ()=> setTxt.play(),
+// },)
+// .fromTo(".hobbie1", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "15%", left : "20%"}, 0)
+// .fromTo(".hobbie2", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "60%", left : "20%"}, 0)
+// .fromTo(".hobbie3", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "20%", left : "80%"}, 0)
+// .fromTo(".hobbie4", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "65%", left : "83%"}, 0)
+// .fromTo(".hobbie5", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50}, {top : "100%", left : "50%"}, 0)
+// .fromTo(".hobbie6", {top : "50%", left : "50%", yPercent : -50 , xPercent : -50, scale : 0.5},{yPercent : -50 , xPercent : -50, scale : 1.2}, 0)
 
 
 // #######################################-- Contact --#######################################
@@ -487,6 +559,36 @@ const animBox = function(){
     .from(".title_stroke", {scale : 0, duration : 0.8}, "-=0.5")
 
 
-
-
     // #######################################-- contact2 --#######################################
+
+    const logoGit = document.querySelector(".logo_gitHub")
+    const logoMail = document.querySelector(".logo_email")
+
+    // Animate text
+
+    gsap.set(".contact_txt1 span", {y : 200, autoAlpha : 0})
+    gsap.set(".contact_txt2 span", {y : 200, autoAlpha : 0});
+
+    const hoverTxt1 = gsap.to(".contact_txt1 span", {autoAlpha : 1, y: 0, duration: 0.5, stagger : 0.1, ease: Back.easeOut.config(1), paused : true})
+    const hoverTxt2 = gsap.to(".contact_txt2 span", {autoAlpha : 1, y: 0, duration: 0.5, stagger : 0.1, ease: Back.easeOut.config(1), paused : true})
+        
+    logoGit.addEventListener("mouseenter",()=> hoverTxt1.play() )
+    logoGit.addEventListener("mouseleave", ()=> hoverTxt1.reverse())
+
+    logoMail.addEventListener("mouseenter", ()=> hoverTxt2.play())
+    logoMail.addEventListener("mouseleave", ()=>hoverTxt2.reverse())
+
+    //Animate logo
+
+    gsap.set([logoGit, logoMail],{ boxShadow : "8px 8px 11px #121111, -8px -8px 11px #484545 "})
+    const clickLogo1 = gsap.to(logoGit, {boxShadow : "inset 8px 8px 11px #121111,inset -8px -8px 11px #484545 ", paused : true})
+    const clickLogo2 = gsap.to(logoMail, {boxShadow : "inset 8px 8px 11px #121111,inset -8px -8px 11px #484545 ", paused : true})
+
+
+    logoGit.addEventListener("mousedown", ()=> clickLogo1.play())
+    logoGit.addEventListener("mouseup", ()=> clickLogo1.reverse())
+
+    logoMail.addEventListener("mousedown", ()=> clickLogo2.play())
+    logoMail.addEventListener("mouseup", ()=> clickLogo2.reverse())
+
+

@@ -1,8 +1,8 @@
 {
   "name": "site-cv",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Site CV pour présenter mon parcour dans le web-developpement",
+  "main": "index.html",
   "dependencies": {
     "gsap": "^3.5.1",
     "smooth-scrollbar": "^8.5.3"
@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.html",
-    "build": "parcel src/index.html",
+    "build": "parcel build src/index.html",
     "prefix": "postcss src/styles/style.css --use autoprefixer -d src/styles/prefixed/"
   },
   "repository": {

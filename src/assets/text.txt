@@ -1,0 +1,23 @@
+Je m'appelle JEAN Maxime, je suis née à Nouméa sur le belle archipel de Nouvelle-Calédonie.
+Après un parcour scolaire générale économique et social j'ai décider de poursuivre mes études 
+avec une licence et un master en management public orienté vers la gestion de la qualité et de l'environnement.
+Assez décu de ce parcour trop général, avec la sensation de ne pas avoir appris grand chose, j'ai décider de changer 
+totalement de direction pour me tourner vers quelques chose qui me correspondrai plus, le dévelloppement web...
+
+
+J'ai découvert la programmation avec Arduino et j'ai vite été fasciné par la possibilité de creer des choses uniquement 
+avec des lignes de code. Cherchant a me réorienté profesionnelement, je me suis donc tourné vers cette voie et plus particulierement vers
+le developpement web. En effet cela permettait de marier technique de programmation avec un aspect plus artistique. Cela me semblait également 
+une meilleur approche à un apprentissage en autodidacte. Je suis aujourd'hui très content de ce choix et j'ai hate d'en apprendre encore plus...
+
+J'ai d'abord commencer par apprendre les bases de la programmation et de l'algorithmie (boucle, condition etc...) et en même temps les bases 
+des langages de programmation front-end (les différentes syntaxes, fonction utliser etc...). J'ai appris cela grace a des sites
+comme Openclassroom ou celui de Pierre Girot.
+
+Une fois les bases acquises j'ai commencer à réaliser des exercices plus concrets. Cela ma permis de consolider le savoir acquis tout en ayant une 
+vision plus global de tout ce qui touche au devellopement web et à la maniere d'organiser un projet. J'ai trouver la plupart de ces exercices sur des 
+platform comme Udemy ou Youtube.
+
+
+Après de nombreux exercices viens le temps de mettre a l'épreuve les connaissances acquises jusque la. Je me suis donc lancé dans la réalisation de projets de A à Z sans aide 
+extérieur. J'ai ainsi pu être confronté à de nombreux problèmes, les résoudres et voir ou je devais encore m'améliorer. Ce site fait partie de ces projets.
